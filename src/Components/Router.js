@@ -10,6 +10,7 @@ const AppRouter = () => {
       <>
         <Route exact path="/" component={Home}></Route>
         <Route path="/tv" component={TV}></Route>
+        <Route path="/tv/popular" render={() => <h1>pupular</h1>}></Route>
         <Route path="/search" component={Search}></Route>
       </>
     </Router>
