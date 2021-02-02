@@ -1,21 +1,30 @@
 import React from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = styled.header``;
+const List = styled.ul`
+  display: flex;
+`;
+
+const Item = styled.li``;
+
+const SLink = styled(Link)``;
+
+export default () => {
   return (
-    <header>
-      <ul>
-        <li>
-          <a href="/">Movies</a>
-        </li>
-        <li>
-          <a href="/tv">tv</a>
-        </li>
-        <li>
-          <a href="/search">search</a>
-        </li>
-      </ul>
-    </header>
+    <Header>
+      <List>
+        <Item>
+          <SLink to="/">Movies</SLink>
+        </Item>
+        <Item>
+          <SLink to="/tv">tv</SLink>
+        </Item>
+        <Item>
+          <SLink to="/search">search</SLink>
+        </Item>
+      </List>
+    </Header>
   );
 };
-
-export default Header;
