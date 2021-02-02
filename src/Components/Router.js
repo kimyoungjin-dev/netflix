@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Route,
   Switch,
   Redirect,
@@ -8,11 +8,13 @@ import {
 import Home from "Routes/Home";
 import Search from "Routes/Search";
 import TV from "Routes/TV";
+import Header from "Components/Header";
 
 const AppRouter = () => {
   return (
     <Router>
       <>
+        <Header />
         <Switch>
           <Route exact path="/" component={Home}></Route>
           <Route path="/tv" component={TV}></Route>
