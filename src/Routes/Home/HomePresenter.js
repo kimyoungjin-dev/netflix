@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 const HomePresenter = ({ nowPlaying, popular, upcoming, loading, error }) =>
   null;
 
-DetailPresenter.propTypes = {
+HomePresenter.propTypes = {
   nowPlaying: PropTypes.array,
   popular: PropTypes.array,
   upcoming: PropTypes.array,
