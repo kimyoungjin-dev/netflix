@@ -2,9 +2,9 @@ import React from "react";
 import TVPresenter from "./TVPresenter";
 
 const TVContainer = () => {
-  const [topRated, topRated] = useState(null);
+  const [topRated, setTopRated] = useState(null);
   const [popular, setPopular] = useState(null);
-  const [airingToday, airingToday] = useState(null);
+  const [airingToday, setAiringToday] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 

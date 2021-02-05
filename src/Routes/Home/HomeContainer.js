@@ -1,4 +1,5 @@
-import React from "react";
+import { movieApi } from "api";
+import React, { useEffect } from "react";
 import HomePresenter from "./HomePresenter";
 
 const HomeContainer = () => {
@@ -7,7 +8,13 @@ const HomeContainer = () => {
   const [upcoming, setUpcoming] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const getMovies = async () => {
+    const data = await movieApi.nowPlaying();
+    console.log(data);
+  };
+  useEffect(() => {
+    getMovies();
+  }, []);
   return (
     <div>
       <HomePresenter
