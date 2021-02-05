@@ -30,7 +30,6 @@ const Item = styled.li`
 `;
 
 const SLink = styled(Link)`
-  background-color: red;
   display: flex;
   height: 100%;
   justify-content: center;
