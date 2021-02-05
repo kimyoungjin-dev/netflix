@@ -8,13 +8,33 @@ const HomeContainer = () => {
   const [upcoming, setUpcoming] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
   const getMovies = async () => {
-    const data = await movieApi.nowPlaying();
-    console.log(data);
+    try {
+      const {
+        data: { results: nowPlaying },
+      } = await movieApi.nowPlaying();
+      const {
+        data: { results: popular },
+      } = await movieApi.popular();
+      const {
+        data: { results: upcoming },
+      } = await movieApi.upcoming();
+
+      setNowPlaying(nowPlaying);
+      setPopular(popular);
+      setUpcoming(upcoming);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
+
   useEffect(() => {
     getMovies();
   }, []);
+
   return (
     <div>
       <HomePresenter

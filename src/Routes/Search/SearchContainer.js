@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { movieApi } from "api";
+import React, { useEffect, useState } from "react";
 import SearchPresenter from "./SearchPresenter";
 
 const SearchContainer = () => {
@@ -8,9 +9,34 @@ const SearchContainer = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const handdleSumbit = () => {
+    if (SearchTerm !== "") {
+      SearchByTerm();
+    }
+  };
+
+  const SearchByTerm = async () => {
+    setLoading(true);
+    try {
+      const {
+        data: { results: movieResults },
+      } = await movieApi.search(SearchTerm);
+      const {
+        data: { results: tvResults },
+      } = await movieApi.search(SearchTerm);
+      setMovieResults(movieResults);
+      setTvResults(tvResults);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div>
       <SearchPresenter
+        handdleSumbit={handdleSumbit}
         SearchTerm={SearchTerm}
         movieResults={movieResults}
         tvResults={tvResults}

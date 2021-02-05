@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { tvApi } from "api";
+import React, { useEffect, useState } from "react";
 import TVPresenter from "./TVPresenter";
 
 const TVContainer = () => {
@@ -8,6 +9,32 @@ const TVContainer = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const getMovies = async () => {
+    try {
+      const {
+        data: { results: topRated },
+      } = await tvApi.topRated();
+
+      const {
+        data: { results: popular },
+      } = await tvApi.popular();
+
+      const {
+        data: { results: airingToday },
+      } = await tvApi.airingToday();
+
+      setTopRated(topRated);
+      setPopular(popular);
+      setAiringToday(airingToday);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+    getMovies();
+  }, []);
   return (
     <div>
       <TVPresenter
