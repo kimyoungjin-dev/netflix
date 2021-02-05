@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import SearchPresenter from "./SearchPresenter";
 
 const SearchContainer = () => {
@@ -13,7 +13,7 @@ const SearchContainer = () => {
       <SearchPresenter
         SearchTerm={SearchTerm}
         movieResults={movieResults}
-        tvResults={upcomtvResultsing}
+        tvResults={tvResults}
         loading={loading}
         error={error}
       />
