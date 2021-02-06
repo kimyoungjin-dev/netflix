@@ -14,6 +14,7 @@ const Header = styled.header`
   align-items: center;
   background-color: black;
   z-index: 10;
+  font-size: 13px;
   box-shadow: 0px 1px 5px 2px rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(8px);
 `;
