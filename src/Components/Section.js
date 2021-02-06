@@ -21,6 +21,7 @@ const Section = ({ title, children }) => (
     <Grid>{children}</Grid>
   </Container>
 );
+
 Section.propTypes = {
   title: PropTypes.string,
   children: PropTypes.oneOfType([
