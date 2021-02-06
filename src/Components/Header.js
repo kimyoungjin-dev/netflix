@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link, withRouter } from "react-router-dom";
+import logo from "images/logo.webp";
 
 const Header = styled.header`
   color: white;
@@ -11,9 +12,17 @@ const Header = styled.header`
   height: 50px;
   display: flex;
   align-items: center;
-  background-color: rgba(20, 20, 20, 0.8);
+  background-color: black;
   z-index: 10;
   box-shadow: 0px 1px 5px 2px rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+`;
+
+const Logo = styled.div`
+  & img {
+    width: 80px;
+    height: 50px;
+  }
 `;
 
 const List = styled.ul`
@@ -37,19 +46,26 @@ const SLink = styled(Link)`
 `;
 
 const HeaderC = ({ location: { pathname } }) => (
-  <Header>
-    <List>
-      <Item current={pathname === "/"}>
-        <SLink to="/">Movies</SLink>
-      </Item>
-      <Item current={pathname === "/tv"}>
-        <SLink to="/tv">tv</SLink>
-      </Item>
-      <Item current={pathname === "/search"}>
-        <SLink to="/search">search</SLink>
-      </Item>
-    </List>
-  </Header>
+  <>
+    <Header>
+      <>
+        <Logo>
+          <img src={logo} />
+        </Logo>
+        <List>
+          <Item current={pathname === "/"}>
+            <SLink to="/">Movies</SLink>
+          </Item>
+          <Item current={pathname === "/tv"}>
+            <SLink to="/tv">tv</SLink>
+          </Item>
+          <Item current={pathname === "/search"}>
+            <SLink to="/search">search</SLink>
+          </Item>
+        </List>
+      </>
+    </Header>
+  </>
 );
 
 export default withRouter(HeaderC);
