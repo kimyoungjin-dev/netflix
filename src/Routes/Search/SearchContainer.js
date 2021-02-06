@@ -36,7 +36,7 @@ const SearchContainer = () => {
       setMovieResults(movieResults);
       setTvResults(tvResults);
     } catch (error) {
-      console.log(error);
+      setError("Movie information cannot be loaded.");
     } finally {
       setLoading(false);
     }

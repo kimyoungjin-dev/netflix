@@ -22,12 +22,11 @@ const TVContainer = () => {
       const {
         data: { results: airingToday },
       } = await tvApi.airingToday();
-
       setTopRated(topRated);
       setPopular(popular);
       setAiringToday(airingToday);
     } catch (error) {
-      console.log(error);
+      setError("Movie information cannot be loaded.");
     } finally {
       setLoading(false);
     }

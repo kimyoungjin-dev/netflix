@@ -20,12 +20,11 @@ const HomeContainer = () => {
       const {
         data: { results: upcoming },
       } = await movieApi.upcoming();
-
       setNowPlaying(nowPlaying);
       setPopular(popular);
       setUpcoming(upcoming);
     } catch (error) {
-      console.log(error);
+      setError("Movie information cannot be loaded.");
     } finally {
       setLoading(false);
     }
