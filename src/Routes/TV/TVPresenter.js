@@ -1,4 +1,5 @@
 import Loader from "Components/Loader";
+import Massage from "Components/Massage";
 import Section from "Components/Section";
 import PropTypes from "prop-types";
 import styled from "styled-components";
@@ -35,6 +36,7 @@ const TVPresenter = ({ topRated, popular, airingToday, loading, error }) =>
           ))}
         </Section>
       )}
+      {error && <Massage color="red" text={error} />}
     </Container>
   );
 

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { AiOutlineSearch } from "react-icons/ai";
 import Section from "Components/Section";
 import Loader from "Components/Loader";
+import Massage from "Components/Massage";
 
 const Container = styled.div`
   height: 40px;
@@ -71,6 +72,14 @@ const SearchPresenter = ({
         </Container>
       </>
     )}
+    {error && <Massage color="red" text={error} />}
+
+    {movieResults &&
+      tvResults &&
+      movieResults.length === 0 &&
+      tvResults.length === 0 && (
+        <Massage color="yellow" text=" No results were found for your search" />
+      )}
   </Container>
 );
 
