@@ -9,10 +9,19 @@ const SearchContainer = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const handdleSumbit = () => {
+  const handdleSumbit = (event) => {
+    event.preventDefault();
     if (SearchTerm !== "") {
       SearchByTerm();
     }
+    setSearchTerm("");
+  };
+
+  const onChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setSearchTerm(value);
   };
 
   const SearchByTerm = async () => {
@@ -36,6 +45,7 @@ const SearchContainer = () => {
   return (
     <div>
       <SearchPresenter
+        onChange={onChange}
         handdleSumbit={handdleSumbit}
         SearchTerm={SearchTerm}
         movieResults={movieResults}
