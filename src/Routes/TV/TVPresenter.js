@@ -1,5 +1,6 @@
 import Loader from "Components/Loader";
 import Massage from "Components/Massage";
+import Poster from "Components/Poster";
 import Section from "Components/Section";
 import PropTypes from "prop-types";
 import styled from "styled-components";
@@ -16,7 +17,15 @@ const TVPresenter = ({ topRated, popular, airingToday, loading, error }) =>
       {topRated && topRated.length > 0 && (
         <Section title="TopRated">
           {topRated.map((show) => (
-            <span>{show.name}</span>
+            <Poster
+              key={show.id}
+              id={show.id}
+              title={show.original_name}
+              year={show.first_air_date}
+              isMovie={false}
+              imgUrl={show.poster_path}
+              rating={show.vote_average}
+            />
           ))}
         </Section>
       )}
@@ -24,7 +33,15 @@ const TVPresenter = ({ topRated, popular, airingToday, loading, error }) =>
       {popular && popular.length > 0 && (
         <Section title="Popular">
           {popular.map((show) => (
-            <span>{show.name}</span>
+            <Poster
+              key={show.id}
+              id={show.id}
+              title={show.original_name}
+              year={show.first_air_date}
+              isMovie={false}
+              imgUrl={show.poster_path}
+              rating={show.vote_average}
+            />
           ))}
         </Section>
       )}
@@ -32,7 +49,15 @@ const TVPresenter = ({ topRated, popular, airingToday, loading, error }) =>
       {airingToday && airingToday.length > 0 && (
         <Section title="AiringToday">
           {airingToday.map((show) => (
-            <span>{show.name}</span>
+            <Poster
+              key={show.id}
+              id={show.id}
+              title={show.original_name}
+              year={show.first_air_date}
+              isMovie={false}
+              imgUrl={show.poster_path}
+              rating={show.vote_average}
+            />
           ))}
         </Section>
       )}

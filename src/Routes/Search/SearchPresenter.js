@@ -4,29 +4,43 @@ import { AiOutlineSearch } from "react-icons/ai";
 import Section from "Components/Section";
 import Loader from "Components/Loader";
 import Massage from "Components/Massage";
+import Poster from "Components/Poster";
 
 const Container = styled.div`
-  height: 40px;
-  padding-right: 50px;
+  width: 100%;
 `;
 
 const Form = styled.form`
-  all: unset;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  padding-right: 20px;
 `;
 
 const Input = styled.input`
   all: unset;
-  font-size: 30px;
-  width: 25%;
-  text-align: center;
+  font-size: 20px;
+  padding: 10px;
+  border: 1px solid white;
+
+  &:hover {
+    border: 1px solid white;
+    opacity: 0.5;
+  }
+  &::placeholder {
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 const SearchButton = styled.button`
   all: unset;
+  margin-left: 20px;
+  margin-top: 5px;
   font-size: 30px;
+  color: white;
 `;
 
 const SearchPresenter = ({
@@ -57,7 +71,14 @@ const SearchPresenter = ({
           {movieResults && movieResults.length > 0 && (
             <Section title="MovieResults">
               {movieResults.map((movie) => (
-                <span>{movie.name}</span>
+                <Poster
+                  id={movie.id}
+                  title={movie.original_title}
+                  rating={movie.vote_average}
+                  year={movie.release_date}
+                  imgUrl={movie.poster_path}
+                  isMovie={true}
+                />
               ))}
             </Section>
           )}
@@ -65,7 +86,14 @@ const SearchPresenter = ({
           {tvResults && tvResults.length > 0 && (
             <Section title="TvResults">
               {tvResults.map((show) => (
-                <span>{show.name}</span>
+                <Poster
+                  key={show.id}
+                  id={show.id}
+                  title={show.original_name}
+                  year={show.first_air_date}
+                  isMovie={false}
+                  imgUrl={show.poster_path}
+                />
               ))}
             </Section>
           )}

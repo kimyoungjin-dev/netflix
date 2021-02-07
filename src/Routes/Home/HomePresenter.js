@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Section from "Components/Section";
 import Loader from "Components/Loader";
 import Massage from "Components/Massage";
+import Poster from "Components/Poster";
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -14,9 +15,16 @@ const HomePresenter = ({ nowPlaying, popular, upcoming, loading, error }) =>
   ) : (
     <Container>
       {nowPlaying && nowPlaying.length > 0 && (
-        <Section title="Now Play">
+        <Section title="Now_Play">
           {nowPlaying.map((movie) => (
-            <span>{movie.title}</span>
+            <Poster
+              id={movie.id}
+              title={movie.original_title}
+              rating={movie.vote_average}
+              year={movie.release_date}
+              imgUrl={movie.poster_path}
+              isMovie={true}
+            />
           ))}
         </Section>
       )}
@@ -24,7 +32,14 @@ const HomePresenter = ({ nowPlaying, popular, upcoming, loading, error }) =>
       {upcoming && upcoming.length > 0 && (
         <Section title="UpComing">
           {upcoming.map((movie) => (
-            <span>{movie.title}</span>
+            <Poster
+              id={movie.id}
+              title={movie.original_title}
+              rating={movie.vote_average}
+              year={movie.release_date}
+              imgUrl={movie.poster_path}
+              isMovie={true}
+            />
           ))}
         </Section>
       )}
@@ -32,7 +47,14 @@ const HomePresenter = ({ nowPlaying, popular, upcoming, loading, error }) =>
       {popular && popular.length > 0 && (
         <Section title="Popular">
           {popular.map((movie) => (
-            <span>{movie.title}</span>
+            <Poster
+              id={movie.id}
+              title={movie.original_title}
+              rating={movie.vote_average}
+              year={movie.release_date}
+              imgUrl={movie.poster_path}
+              isMovie={true}
+            />
           ))}
         </Section>
       )}
