@@ -1,31 +1,74 @@
 import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { AiFillStar } from "react-icons/ai";
 
-const Container = styled.div``;
+const Container = styled.div`
+  font-size: 15px;
+`;
+
+const Rating = styled.span`
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 3px;
+  opacity: 0;
+
+  & :first-child {
+    color: yellow;
+    opacity: 0.9;
+    font-size: 10px;
+  }
+`;
 
 const Image = styled.div`
+  height: 180px;
+  background-size: cover;
+  border-radius: 4px;
+  background-position: center;
+  transition: opacity 0.1s linear;
   background-image: url(${(props) => props.bgUrl});
 `;
 
-const Rating = styled.span``;
+const ImageContainer = styled.div`
+  margin-bottom: 5px;
+  position: relative;
+  &:hover {
+    ${Image} {
+      opacity: 0.4;
+      border: 1px solid white;
+    }
+    ${Rating} {
+      opacity: 0.8;
+    }
+  }
+`;
 
-const ImageContainer = styled.div;
+const Title = styled.span`
+  display: block;
+  margin: 8px 0px;
+`;
 
-const Year = styled.span``;
+const Year = styled.span`
+  color: gray;
+`;
 
-const Title = styled.span``;
-
-const Poster = ({ id, title, year, ismovie = false, imageUrl, rating }) => {
+const Poster = ({ id, title, year, imgUrl, isMovie = false, rating }) => {
   return (
-    <Link to={ismovie ? `/movie/${id}` : `/show/${id}`}>
+    <Link to={isMovie ? `/movie/${id}` : `show/${id}`}>
       <Container>
         <ImageContainer>
-          <Image bgUrl={imageUrl} />
+          <Image
+            bgUrl={
+              imgUrl
+                ? `https://image.tmdb.org/t/p/w500${imgUrl}`
+                : require("../images/BlankPoster.jpg").default
+            }
+          />
           <Rating>
-            <span role="img" aria-label="rating">
-              별
+            <span>
+              <AiFillStar />
             </span>
             {rating}
           </Rating>
@@ -36,13 +79,12 @@ const Poster = ({ id, title, year, ismovie = false, imageUrl, rating }) => {
     </Link>
   );
 };
-
 Poster.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   year: PropTypes.string,
-  ismovie: PropTypes.bool,
-  imageUrl: PropTypes.string.isRequired,
+  imgUrl: PropTypes.string,
+  isMovie: PropTypes.bool,
   rating: PropTypes.number,
 };
 export default Poster;
