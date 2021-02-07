@@ -20,6 +20,7 @@ const HomeContainer = () => {
       const {
         data: { results: upcoming },
       } = await movieApi.upcoming();
+
       setNowPlaying(nowPlaying);
       setPopular(popular);
       setUpcoming(upcoming);
