@@ -1,25 +1,57 @@
 import React from "react";
 import styled from "styled-components";
-import { BiRocket } from "react-icons/bi";
+import { FaSpinner } from "react-icons/fa";
+import LoadingImage from "images/netflixLoadingBg.jpeg";
 
 const Container = styled.div`
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
+  background-color: black;
+  color: red;
 `;
 
-const ICon = styled.span`
-  font-size: 50px;
+const Loading = styled.img``;
+
+const SpinContainer = styled.div`
+  width: 50%;
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
+
+const Spin = styled.span`
+  font-size: 60px;
+  animation: spin 4s linear infinite;
+  @keyframes spin {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+`;
+
+const Title = styled.span``;
 
 const Loader = () => {
   return (
     <Container>
-      <ICon role="text" aria-label="loading">
-        <BiRocket />
-      </ICon>
+      <Loading src={LoadingImage}></Loading>
+      <SpinContainer>
+        <Spin>
+          <FaSpinner />
+        </Spin>
+      </SpinContainer>
     </Container>
   );
 };
