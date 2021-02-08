@@ -25,6 +25,7 @@ const HomePresenter = ({ nowPlaying, popular, upcoming, loading, error }) => (
           <Section title="Now_Play">
             {nowPlaying.map((movie) => (
               <Poster
+                key={movie.id}
                 id={movie.id}
                 title={movie.original_title}
                 rating={movie.vote_average}
@@ -40,6 +41,7 @@ const HomePresenter = ({ nowPlaying, popular, upcoming, loading, error }) => (
           <Section title="UpComing">
             {upcoming.map((movie) => (
               <Poster
+                key={movie.id}
                 id={movie.id}
                 title={movie.original_title}
                 rating={movie.vote_average}
@@ -55,6 +57,7 @@ const HomePresenter = ({ nowPlaying, popular, upcoming, loading, error }) => (
           <Section title="Popular">
             {popular.map((movie) => (
               <Poster
+                key={movie.id}
                 id={movie.id}
                 title={movie.original_title}
                 rating={movie.vote_average}

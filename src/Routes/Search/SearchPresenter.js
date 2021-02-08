@@ -79,6 +79,7 @@ const SearchPresenter = ({
               <Section title="MovieResults">
                 {movieResults.map((movie) => (
                   <Poster
+                    key={movie.id}
                     id={movie.id}
                     title={movie.original_title}
                     rating={movie.vote_average}
