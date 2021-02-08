@@ -12,58 +12,62 @@ const Container = styled.div`
 
 const HomePresenter = ({ nowPlaying, popular, upcoming, loading, error }) => (
   <>
-    <Helmet>
-      <title>Movies | NetFlix</title>
-    </Helmet>
-    ); loading ? (
-    <Loader />) : (
-    <Container>
-      {nowPlaying && nowPlaying.length > 0 && (
-        <Section title="Now_Play">
-          {nowPlaying.map((movie) => (
-            <Poster
-              id={movie.id}
-              title={movie.original_title}
-              rating={movie.vote_average}
-              year={movie.release_date}
-              imgUrl={movie.poster_path}
-              isMovie={true}
-            />
-          ))}
-        </Section>
-      )}
+    {loading ? (
+      <>
+        <Helmet>
+          <title>Home | NetFlix</title>
+        </Helmet>
+        <Loader />
+      </>
+    ) : (
+      <Container>
+        {nowPlaying && nowPlaying.length > 0 && (
+          <Section title="Now_Play">
+            {nowPlaying.map((movie) => (
+              <Poster
+                id={movie.id}
+                title={movie.original_title}
+                rating={movie.vote_average}
+                year={movie.release_date}
+                imgUrl={movie.poster_path}
+                isMovie={true}
+              />
+            ))}
+          </Section>
+        )}
 
-      {upcoming && upcoming.length > 0 && (
-        <Section title="UpComing">
-          {upcoming.map((movie) => (
-            <Poster
-              id={movie.id}
-              title={movie.original_title}
-              rating={movie.vote_average}
-              year={movie.release_date}
-              imgUrl={movie.poster_path}
-              isMovie={true}
-            />
-          ))}
-        </Section>
-      )}
+        {upcoming && upcoming.length > 0 && (
+          <Section title="UpComing">
+            {upcoming.map((movie) => (
+              <Poster
+                id={movie.id}
+                title={movie.original_title}
+                rating={movie.vote_average}
+                year={movie.release_date}
+                imgUrl={movie.poster_path}
+                isMovie={true}
+              />
+            ))}
+          </Section>
+        )}
 
-      {popular && popular.length > 0 && (
-        <Section title="Popular">
-          {popular.map((movie) => (
-            <Poster
-              id={movie.id}
-              title={movie.original_title}
-              rating={movie.vote_average}
-              year={movie.release_date}
-              imgUrl={movie.poster_path}
-              isMovie={true}
-            />
-          ))}
-        </Section>
-      )}
-      {error && <Massage color="red" text={error} />}
-    </Container>
+        {popular && popular.length > 0 && (
+          <Section title="Popular">
+            {popular.map((movie) => (
+              <Poster
+                id={movie.id}
+                title={movie.original_title}
+                rating={movie.vote_average}
+                year={movie.release_date}
+                imgUrl={movie.poster_path}
+                isMovie={true}
+              />
+            ))}
+          </Section>
+        )}
+        {error && <Massage color="red" text={error} />}
+      </Container>
+    )}
   </>
 );
 

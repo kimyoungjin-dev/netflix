@@ -8,8 +8,7 @@ const Container = styled.div`
   position: relative;
   height: 100vh;
   width: 100%;
-  margin-top: 50px;
-  padding: 50px;
+  padding-left: 50px;
   display: flex;
 `;
 
@@ -42,6 +41,7 @@ const Cover = styled.div`
   background-position: center center;
   background-size: cover;
   height: 80%;
+  margin-right: 30px;
   border-radius: 5px;
 `;
 
@@ -91,13 +91,7 @@ const DetailPresenter = ({ result, loading, error }) => {
                 : result && result.original_name}
             </title>
           </Helmet>
-          <Helmet>
-            <title>
-              {result && result.original_title
-                ? result.original_title
-                : result && result.original_name}
-            </title>
-          </Helmet>
+
           <Backdrop
             bgImage={`https://image.tmdb.org/t/p/original${
               result && result.backdrop_path
@@ -117,25 +111,31 @@ const DetailPresenter = ({ result, loading, error }) => {
               </Title>
               <ItemContainer>
                 <Item>
-                  {result && result.release_date
-                    ? result.release_date.substring(0, 4)
-                    : result && result.first_air_date.substring(0, 4)}
+                  {`${
+                    result && result.release_date
+                      ? result.release_date.substring(0, 4)
+                      : result && result.first_air_date.substring(0, 4)
+                  }년`}
                 </Item>
                 <Divider>•</Divider>
                 <Item>
-                  {result && result.runtime
-                    ? result.runtime
-                    : result && result.episode_run_time[0]}
+                  {`${
+                    result && result.runtime
+                      ? result.runtime
+                      : result && result.episode_run_time[0]
+                  }분`}
                 </Item>
                 <Divider>•</Divider>
                 <Item>
-                  {result &&
+                  {`장르 : ${
+                    result &&
                     result.genres &&
                     result.genres.map((genre, index) =>
                       index === result.genres.length - 1
                         ? genre.name
                         : `${genre.name}/`
-                    )}
+                    )
+                  }`}
                 </Item>
               </ItemContainer>
               <OverView>{result && result.overview}</OverView>

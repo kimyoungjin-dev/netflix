@@ -12,61 +12,65 @@ const Container = styled.div`
 
 const TVPresenter = ({ topRated, popular, airingToday, loading, error }) => (
   <>
-    <Helmet>
-      <title>TV Show | NetFlix</title>
-    </Helmet>
-    ); loading ? (
-    <Loader />) : (
-    <Container>
-      {topRated && topRated.length > 0 && (
-        <Section title="TopRated">
-          {topRated.map((show) => (
-            <Poster
-              key={show.id}
-              id={show.id}
-              title={show.original_name}
-              year={show.first_air_date}
-              isMovie={false}
-              imgUrl={show.poster_path}
-              rating={show.vote_average}
-            />
-          ))}
-        </Section>
-      )}
+    {loading ? (
+      <>
+        <Loader />
+        <Helmet>
+          <title>TV Show | NetFlix</title>
+        </Helmet>
+      </>
+    ) : (
+      <Container>
+        {topRated && topRated.length > 0 && (
+          <Section title="TopRated">
+            {topRated.map((show) => (
+              <Poster
+                key={show.id}
+                id={show.id}
+                title={show.original_name}
+                year={show.first_air_date}
+                isMovie={false}
+                imgUrl={show.poster_path}
+                rating={show.vote_average}
+              />
+            ))}
+          </Section>
+        )}
 
-      {popular && popular.length > 0 && (
-        <Section title="Popular">
-          {popular.map((show) => (
-            <Poster
-              key={show.id}
-              id={show.id}
-              title={show.original_name}
-              year={show.first_air_date}
-              isMovie={false}
-              imgUrl={show.poster_path}
-              rating={show.vote_average}
-            />
-          ))}
-        </Section>
-      )}
+        {popular && popular.length > 0 && (
+          <Section title="Popular">
+            {popular.map((show) => (
+              <Poster
+                key={show.id}
+                id={show.id}
+                title={show.original_name}
+                year={show.first_air_date}
+                isMovie={false}
+                imgUrl={show.poster_path}
+                rating={show.vote_average}
+              />
+            ))}
+          </Section>
+        )}
 
-      {airingToday && airingToday.length > 0 && (
-        <Section title="AiringToday">
-          {airingToday.map((show) => (
-            <Poster
-              key={show.id}
-              id={show.id}
-              title={show.original_name}
-              year={show.first_air_date}
-              isMovie={false}
-              imgUrl={show.poster_path}
-              rating={show.vote_average}
-            />
-          ))}
-        </Section>
-      )}
-      {error && <Massage color="red" text={error} />}
-    </Container>
+        {airingToday && airingToday.length > 0 && (
+          <Section title="AiringToday">
+            {airingToday.map((show) => (
+              <Poster
+                key={show.id}
+                id={show.id}
+                title={show.original_name}
+                year={show.first_air_date}
+                isMovie={false}
+                imgUrl={show.poster_path}
+                rating={show.vote_average}
+              />
+            ))}
+          </Section>
+        )}
+        {error && <Massage color="red" text={error} />}
+      </Container>
+    )}
   </>
 );
 
