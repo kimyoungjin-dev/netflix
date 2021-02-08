@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Loader from "Components/Loader";
-import Helmet from "react-helmet";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 const Container = styled.div`
   position: relative;
@@ -48,7 +48,7 @@ const Cover = styled.div`
 const Data = styled.div`
   margin-left: 25px;
   font-size: 18px;
-  width: 50%;
+  width: 70%;
 `;
 
 const Title = styled.h3`
@@ -72,78 +72,104 @@ const OverView = styled.p`
   line-height: 1.5;
 `;
 
+const Vote = styled.span`
+  color: yellow;
+  font-size: 14px;
+`;
+
+//https://www.imdb.com/title/tt2948372//
+const DbButtion = styled.a`
+  all: unset;
+  background-color: white;
+  margin-left: 20px;
+  margin-top: 10px;
+  color: black;
+  padding: 2px;
+  border-radius: 3px;
+  cursor: pointer;
+`;
+
 const DetailPresenter = ({ result, loading, error }) => {
+  {
+    console.log(result);
+  }
   return (
-    <>
+    <HelmetProvider>
       {loading ? (
         <>
           <Helmet>
-            <title>Loading | NetFlix</title>
+            <title>Loading...</title>
           </Helmet>
           <Loader />
         </>
-      ) : (
+      ) : result ? (
         <Container>
           <Helmet>
             <title>
-              {result && result.original_title
+              {result.original_title
                 ? result.original_title
-                : result && result.original_name}
+                : result.original_name}
             </title>
           </Helmet>
 
           <Backdrop
-            bgImage={`https://image.tmdb.org/t/p/original${
-              result && result.backdrop_path
-            }`}
+            bgImage={`https://image.tmdb.org/t/p/original${result.backdrop_path}`}
           ></Backdrop>
           <Content>
             <Cover
-              bgImage={`https://image.tmdb.org/t/p/original${
-                result && result.poster_path
-              }`}
+              bgImage={`https://image.tmdb.org/t/p/original${result.poster_path}`}
             />
             <Data>
               <Title>
-                {result && result.original_title
+                {result.original_title
                   ? result.original_title
-                  : result && result.original_name}
+                  : result.original_name}
               </Title>
               <ItemContainer>
                 <Item>
                   {`${
-                    result && result.release_date
+                    result.release_date
                       ? result.release_date.substring(0, 4)
-                      : result && result.first_air_date.substring(0, 4)
+                      : result.first_air_date.substring(0, 4)
                   }년`}
                 </Item>
                 <Divider>•</Divider>
                 <Item>
                   {`${
-                    result && result.runtime
-                      ? result.runtime
-                      : result && result.episode_run_time[0]
+                    result.runtime ? result.runtime : result.episode_run_time[0]
                   }분`}
                 </Item>
                 <Divider>•</Divider>
                 <Item>
-                  {`장르 : ${
-                    result &&
-                    result.genres &&
+                  {result.genres &&
                     result.genres.map((genre, index) =>
                       index === result.genres.length - 1
                         ? genre.name
-                        : `${genre.name}/`
-                    )
-                  }`}
+                        : `${genre.name} / `
+                    )}
                 </Item>
+                <Divider>•</Divider>
+                <Vote>
+                  {Math.floor(result.vote_average)
+                    ? "✪".repeat(Math.floor(result.vote_average))
+                    : "1"}
+                </Vote>
+                <DbButtion
+                  onClick={() =>
+                    (window.location = `https://www.imdb.com/title/${
+                      result && result.imdb_id && result.imdb_id
+                    }`)
+                  }
+                >
+                  imdb
+                </DbButtion>
               </ItemContainer>
-              <OverView>{result && result.overview}</OverView>
+              <OverView>{result.overview}..</OverView>
             </Data>
           </Content>
         </Container>
-      )}
-    </>
+      ) : null}
+    </HelmetProvider>
   );
 };
 
