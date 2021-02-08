@@ -5,12 +5,14 @@ import Section from "Components/Section";
 import Loader from "Components/Loader";
 import Massage from "Components/Massage";
 import Poster from "Components/Poster";
+import Helmet from "react-helmet";
 
 const Container = styled.div`
   width: 100%;
 `;
 
 const Form = styled.form`
+  margin-top: 20px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -52,63 +54,72 @@ const SearchPresenter = ({
   loading,
   error,
 }) => (
-  <Container>
-    <Form onSubmit={handdleSumbit}>
-      <Input
-        onChange={onChange}
-        value={SearchTerm}
-        placeholder="Search Movie or tv Show!"
-      />
-      <SearchButton>
-        <AiOutlineSearch type="submit" />
-      </SearchButton>
-    </Form>
-    {loading ? (
-      <Loader />
-    ) : (
-      <>
-        <Container>
-          {movieResults && movieResults.length > 0 && (
-            <Section title="MovieResults">
-              {movieResults.map((movie) => (
-                <Poster
-                  id={movie.id}
-                  title={movie.original_title}
-                  rating={movie.vote_average}
-                  year={movie.release_date}
-                  imgUrl={movie.poster_path}
-                  isMovie={true}
-                />
-              ))}
-            </Section>
-          )}
+  <>
+    <Helmet>
+      <title>Search | NetFlix</title>
+    </Helmet>
 
-          {tvResults && tvResults.length > 0 && (
-            <Section title="TvResults">
-              {tvResults.map((show) => (
-                <Poster
-                  key={show.id}
-                  id={show.id}
-                  title={show.original_name}
-                  year={show.first_air_date}
-                  isMovie={false}
-                  imgUrl={show.poster_path}
-                />
-              ))}
-            </Section>
-          )}
-        </Container>
-      </>
-    )}
-    {error && <Massage color="red" text={error} />}
+    <Container>
+      <Form onSubmit={handdleSumbit}>
+        <Input
+          onChange={onChange}
+          value={SearchTerm}
+          placeholder="Search Movie or tv Show!"
+        />
+        <SearchButton>
+          <AiOutlineSearch type="submit" />
+        </SearchButton>
+      </Form>
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <Container>
+            {movieResults && movieResults.length > 0 && (
+              <Section title="MovieResults">
+                {movieResults.map((movie) => (
+                  <Poster
+                    id={movie.id}
+                    title={movie.original_title}
+                    rating={movie.vote_average}
+                    year={movie.release_date}
+                    imgUrl={movie.poster_path}
+                    isMovie={true}
+                  />
+                ))}
+              </Section>
+            )}
 
-    {movieResults &&
-      tvResults &&
-      movieResults.length === 0 &&
-      tvResults.length === 0 && (
-        <Massage color="yellow" text=" No results were found for your search" />
+            {tvResults && tvResults.length > 0 && (
+              <Section title="TvResults">
+                {tvResults.map((show) => (
+                  <Poster
+                    key={show.id}
+                    id={show.id}
+                    title={show.original_name}
+                    year={show.first_air_date}
+                    isMovie={false}
+                    imgUrl={show.poster_path}
+                  />
+                ))}
+              </Section>
+            )}
+          </Container>
+        </>
       )}
-  </Container>
+      {error && <Massage color="red" text={error} />}
+
+      {movieResults &&
+        tvResults &&
+        movieResults.length === 0 &&
+        tvResults.length === 0 && (
+          <Massage
+            color="yellow"
+            text=" No results were found for your search"
+          />
+        )}
+    </Container>
+  </>
 );
 
 SearchPresenter.propTypes = {

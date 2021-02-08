@@ -4,15 +4,19 @@ import Poster from "Components/Poster";
 import Section from "Components/Section";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import Helmet from "react-helmet";
 
 const Container = styled.div`
   padding: 0px 10px;
 `;
 
-const TVPresenter = ({ topRated, popular, airingToday, loading, error }) =>
-  loading ? (
-    <Loader />
-  ) : (
+const TVPresenter = ({ topRated, popular, airingToday, loading, error }) => (
+  <>
+    <Helmet>
+      <title>TV Show | NetFlix</title>
+    </Helmet>
+    ); loading ? (
+    <Loader />) : (
     <Container>
       {topRated && topRated.length > 0 && (
         <Section title="TopRated">
@@ -63,7 +67,8 @@ const TVPresenter = ({ topRated, popular, airingToday, loading, error }) =>
       )}
       {error && <Massage color="red" text={error} />}
     </Container>
-  );
+  </>
+);
 
 TVPresenter.propTypes = {
   topRated: PropTypes.array,

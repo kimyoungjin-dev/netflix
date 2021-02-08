@@ -4,15 +4,19 @@ import Section from "Components/Section";
 import Loader from "Components/Loader";
 import Massage from "Components/Massage";
 import Poster from "Components/Poster";
+import Helmet from "react-helmet";
 
 const Container = styled.div`
   padding: 0px 20px;
 `;
 
-const HomePresenter = ({ nowPlaying, popular, upcoming, loading, error }) =>
-  loading ? (
-    <Loader />
-  ) : (
+const HomePresenter = ({ nowPlaying, popular, upcoming, loading, error }) => (
+  <>
+    <Helmet>
+      <title>Movies | NetFlix</title>
+    </Helmet>
+    ); loading ? (
+    <Loader />) : (
     <Container>
       {nowPlaying && nowPlaying.length > 0 && (
         <Section title="Now_Play">
@@ -60,7 +64,8 @@ const HomePresenter = ({ nowPlaying, popular, upcoming, loading, error }) =>
       )}
       {error && <Massage color="red" text={error} />}
     </Container>
-  );
+  </>
+);
 
 HomePresenter.propTypes = {
   nowPlaying: PropTypes.array,
