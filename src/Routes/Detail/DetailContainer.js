@@ -23,13 +23,12 @@ const DetailContainer = (props) => {
       location: { pathname },
     } = props;
     const isMovie = pathname.includes("movie");
-    const isShow = pathname.includes("show");
 
     try {
       if (isMovie) {
         const { data: result } = await movieApi.movieDetail(id);
         setResult(result);
-      } else if (isShow) {
+      } else {
         const { data: result } = await tvApi.showDetail(id);
         setResult(result);
       }
@@ -37,7 +36,6 @@ const DetailContainer = (props) => {
       console.log(error);
     } finally {
       setLoading(false);
-      setResult(result);
     }
   };
 
