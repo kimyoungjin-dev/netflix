@@ -62,7 +62,7 @@ const Poster = ({ id, title, year, imgUrl, isMovie = false, rating }) => {
           <Image
             bgUrl={
               imgUrl
-                ? `https://image.tmdb.org/t/p/w500${imgUrl}`
+                ? `https://image.tmdb.org/t/p/original${imgUrl}`
                 : require("../images/BlankPoster.jpg").default
             }
           />
