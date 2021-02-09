@@ -3,7 +3,9 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Loader from "Components/Loader";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-
+import Massage from "Components/Massage";
+import YoutubeImage from "images/YoutubeImage.jpeg";
+import { AiFillStar } from "react-icons/ai";
 const Container = styled.div`
   position: relative;
   height: 100vh;
@@ -40,7 +42,7 @@ const Cover = styled.div`
   background-image: url(${(props) => props.bgImage});
   background-position: center center;
   background-size: cover;
-  height: 80%;
+  height: 86%;
   margin-right: 30px;
   border-radius: 5px;
 `;
@@ -52,15 +54,36 @@ const Data = styled.div`
 `;
 
 const Title = styled.h3`
-  font-size: 32px;
+  font-size: 50px;
   margin-bottom: 20px;
 `;
 
 const ItemContainer = styled.div`
   margin-bottom: 30px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 `;
 
 const Item = styled.span``;
+
+const Vote = styled.span`
+  color: yellow;
+  font-size: 20px;
+  margin-left: 20px;
+`;
+
+const DbButtion = styled.button`
+  all: unset;
+  background: #fdc830;
+  background: -webkit-linear-gradient(to right, #f37335, #fdc830);
+  background: linear-gradient(to right, #f37335, #fdc830);
+  margin-left: 10px;
+  color: black;
+  padding: 3px;
+  border-radius: 3px;
+  cursor: pointer;
+`;
 
 const Divider = styled.span`
   margin: 0px 15px;
@@ -72,23 +95,46 @@ const OverView = styled.p`
   line-height: 1.5;
 `;
 
-const Vote = styled.span`
-  color: yellow;
-  font-size: 14px;
+//Center Title
+const MovieMaker = styled.div`
+  margin: 30px 0px;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  opacity: 0.8;
+  justify-content: space-between;
+  height: 15%;
+  font-style: oblique;
 `;
 
-//https://www.imdb.com/title/tt2948372//
-const DbButtion = styled.a`
-  all: unset;
-  background-color: white;
-  margin-left: 20px;
-  margin-top: 10px;
-  color: black;
-  padding: 2px;
-  border-radius: 3px;
+//YouTubeContainer
+const YouTubeContainer = styled.div`
+  display: flex;
+  width: 70%;
+  position: relative;
+  height: auto;
+  justify-content: space-between;
+  position: relative;
   cursor: pointer;
 `;
 
+const YouTubeLink = styled.div`
+  height: 150px;
+  width: 200px;
+  background-image: url(${(props) => props.bgImage});
+  background-position: center center;
+  background-size: cover;
+`;
+
+const YouTubeIcon = styled.img`
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  left: -100px;
+  border-radius: 30%;
+`;
+
+//Components
 const DetailPresenter = ({ result, loading, error }) => {
   {
     console.log(result);
@@ -125,6 +171,7 @@ const DetailPresenter = ({ result, loading, error }) => {
                   ? result.original_title
                   : result.original_name}
               </Title>
+
               <ItemContainer>
                 <Item>
                   {`${
@@ -139,34 +186,81 @@ const DetailPresenter = ({ result, loading, error }) => {
                     result.runtime ? result.runtime : result.episode_run_time[0]
                   }분`}
                 </Item>
-                <Divider>•</Divider>
+                <DbButtion
+                  onClick={() =>
+                    (window.location = `https://www.imdb.com/title/${
+                      result.imdb_id && result.imdb_id
+                    }`)
+                  }
+                >
+                  Preview
+                </DbButtion>
+                <Vote>
+                  {result.vote_average && result.vote_average}
+                  <AiFillStar />
+                </Vote>
+              </ItemContainer>
+
+              <OverView>{result.overview}..</OverView>
+              <MovieMaker>
                 <Item>
-                  {result.genres &&
+                  {`Director :
+                  ${
+                    result.production_companies &&
+                    result.production_companies[0].name
+                  }`}
+                </Item>
+                <Item>
+                  {`Production place
+ : ${result.production_countries && result.production_countries[0].name}`}
+                </Item>
+                <Item>
+                  {`Genres :${
+                    result.genres &&
                     result.genres.map((genre, index) =>
                       index === result.genres.length - 1
                         ? genre.name
                         : `${genre.name} / `
-                    )}
+                    )
+                  }`}
                 </Item>
-                <Divider>•</Divider>
-                <Vote>
-                  {Math.floor(result.vote_average)
-                    ? "✪".repeat(Math.floor(result.vote_average))
-                    : "1"}
-                </Vote>
-                <DbButtion
+              </MovieMaker>
+              <YouTubeContainer>
+                <YouTubeLink
+                  bgImage={
+                    result.poster_path && result.poster_path
+                      ? `https://image.tmdb.org/t/p/original${result.poster_path}`
+                      : require("images/YoutubeImage.jpeg")
+                  }
                   onClick={() =>
-                    (window.location = `https://www.imdb.com/title/${
-                      result && result.imdb_id && result.imdb_id
+                    (window.location = `https:www.youtube.com/watch?v=${
+                      result.videos &&
+                      result.videos.results &&
+                      result.videos.results[0].key
+                    }`)
+                  }
+                ></YouTubeLink>
+
+                <YouTubeLink
+                  bgImage={
+                    result.backdrop_path && result.backdrop_path
+                      ? `https://image.tmdb.org/t/p/original${result.backdrop_path}`
+                      : require("images/YoutubeImage.jpeg")
+                  }
+                  onClick={() =>
+                    (window.location = `https:www.youtube.com/watch?v=${
+                      result.videos &&
+                      result.videos.results &&
+                      result.videos.results[0].key
                     }`)
                   }
                 >
-                  imdb
-                </DbButtion>
-              </ItemContainer>
-              <OverView>{result.overview}..</OverView>
+                  <YouTubeIcon src={YoutubeImage} />
+                </YouTubeLink>
+              </YouTubeContainer>
             </Data>
           </Content>
+          {error && <Massage color="red" text={error} />}
         </Container>
       ) : null}
     </HelmetProvider>
