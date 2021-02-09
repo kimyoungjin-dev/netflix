@@ -23,6 +23,7 @@ const Logo = styled.div`
   & img {
     width: 80px;
     height: 50px;
+    cursor: pointer;
   }
 `;
 
@@ -50,9 +51,11 @@ const HeaderC = ({ location: { pathname } }) => (
   <>
     <Header>
       <>
-        <Logo>
-          <img src={logo} />
-        </Logo>
+        <Link to="/">
+          <Logo>
+            <img src={logo} />
+          </Logo>
+        </Link>
         <List>
           <Item current={pathname === "/"}>
             <SLink to="/">Movies</SLink>
