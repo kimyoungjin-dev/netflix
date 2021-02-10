@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
+import PropTypes from "prop-types";
 
 const Container = styled.div`
   font-size: 15px;
@@ -32,25 +32,44 @@ const Image = styled.div`
 `;
 
 const ImageContainer = styled.div`
-  margin-bottom: 5px;
+  margin: 10px 0;
   position: relative;
   &:hover {
     ${Image} {
       opacity: 0.4;
       border: 1px solid white;
-    }
-    ${Rating} {
-      opacity: 0.8;
+      transform: scale(1.2);
+      transition: transform 0.5s linear;
     }
   }
 `;
 
 const Title = styled.span`
-  display: block;
-  margin: 8px 0px;
+  font-size: 14px;
+`;
+
+const YearRatingContainer = styled.span`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const StarRating = styled.div`
+  width: 27%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+
+  & svg {
+    color: yellow;
+    opacity: 0.7;
+  }
 `;
 
 const Year = styled.span`
+  font-size: 12px;
   color: gray;
 `;
 
@@ -73,8 +92,17 @@ const Poster = ({ id, title, year, imgUrl, isMovie = false, rating }) => {
             {rating}
           </Rating>
         </ImageContainer>
-        <Title>{title}</Title>
-        <Year>{year}</Year>
+
+        <Title>
+          {title && title.length > 18 ? `${title.substring(0, 18)}...` : title}
+        </Title>
+        <YearRatingContainer>
+          <Year>{year && year.substring(0, 4)}</Year>
+          <StarRating>
+            <AiFillStar />
+            {rating}
+          </StarRating>
+        </YearRatingContainer>
       </Container>
     </Link>
   );

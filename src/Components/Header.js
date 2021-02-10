@@ -14,7 +14,7 @@ const Header = styled.header`
   align-items: center;
   background-color: black;
   z-index: 10;
-  font-size: 13px;
+  font-size: 18px;
   box-shadow: 0px 1px 5px 2px rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(8px);
 `;
@@ -36,8 +36,8 @@ const Item = styled.li`
   height: 50px;
   text-align: center;
   transition: border-bottom 0.5s ease-in-out;
-  border-bottom: 5px solid
-    ${(props) => (props.current ? "white" : "transparent")};
+  border-bottom: 4px solid
+    ${(props) => (props.current ? "gray" : "transparent")};
 `;
 
 const SLink = styled(Link)`

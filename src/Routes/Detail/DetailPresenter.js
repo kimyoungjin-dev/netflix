@@ -6,6 +6,7 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import Massage from "Components/Massage";
 import YoutubeImage from "images/YoutubeImage.jpeg";
 import { AiFillStar } from "react-icons/ai";
+
 const Container = styled.div`
   position: relative;
   height: 100vh;
@@ -70,7 +71,6 @@ const Item = styled.span``;
 const Vote = styled.span`
   color: yellow;
   font-size: 20px;
-  margin-left: 20px;
 `;
 
 const DbButtion = styled.button`
@@ -128,17 +128,15 @@ const YouTubeLink = styled.div`
 
 const YouTubeIcon = styled.img`
   position: absolute;
-  width: 80px;
-  height: 80px;
-  left: -100px;
+  width: 40px;
+  height: 40px;
+  top: -10px;
+  left: -9px;
   border-radius: 30%;
 `;
 
 //Components
 const DetailPresenter = ({ result, loading, error }) => {
-  {
-    console.log(result);
-  }
   return (
     <HelmetProvider>
       {loading ? (
