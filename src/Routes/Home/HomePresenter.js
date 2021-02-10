@@ -15,14 +15,14 @@ const HomePresenter = ({ nowPlaying, popular, upcoming, loading, error }) => (
     {loading ? (
       <>
         <Helmet>
-          <title>Home | NetFlix</title>
+          <title>NetFlix | Home</title>
         </Helmet>
         <Loader />
       </>
     ) : (
       <Container>
         {nowPlaying && nowPlaying.length > 0 && (
-          <Section title="Now_Play">
+          <Section title="최신 영화">
             {nowPlaying.map((movie) => (
               <Poster
                 key={movie.id}
@@ -38,7 +38,7 @@ const HomePresenter = ({ nowPlaying, popular, upcoming, loading, error }) => (
         )}
 
         {upcoming && upcoming.length > 0 && (
-          <Section title="UpComing">
+          <Section title="개봉예정 영화">
             {upcoming.map((movie) => (
               <Poster
                 key={movie.id}
@@ -54,7 +54,7 @@ const HomePresenter = ({ nowPlaying, popular, upcoming, loading, error }) => (
         )}
 
         {popular && popular.length > 0 && (
-          <Section title="Popular">
+          <Section title="인기영화">
             {popular.map((movie) => (
               <Poster
                 key={movie.id}

@@ -56,7 +56,7 @@ const SearchPresenter = ({
 }) => (
   <>
     <Helmet>
-      <title>Search | NetFlix</title>
+      <title>NetFlix | Search</title>
     </Helmet>
 
     <Container>

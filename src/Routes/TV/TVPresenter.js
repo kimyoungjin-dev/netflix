@@ -16,7 +16,7 @@ const TVPresenter = ({ topRated, popular, airingToday, loading, error }) => (
       <>
         <Loader />
         <Helmet>
-          <title>TV Show | NetFlix</title>
+          <title> NetFlix | TV Show</title>
         </Helmet>
       </>
     ) : (
