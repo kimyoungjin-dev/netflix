@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Loader from "Components/Loader";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import Massage from "Components/Massage";
-import YoutubeImage from "images/YoutubeImage.jpeg";
+import YoutubeIcon from "images/YoutubeImage.jpeg";
 import { AiFillStar } from "react-icons/ai";
 
 const Container = styled.div`
@@ -60,14 +60,21 @@ const Title = styled.h3`
 `;
 
 const ItemContainer = styled.div`
-  margin-bottom: 30px;
+  margin-top: 15px;
+  margin-bottom: 10px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
 `;
 
 const Item = styled.span`
-  font-size: 15px;
+  font-size: 12px;
+`;
+
+const ItemTitle = styled.span`
+  color: gray;
+  font-size: 16px;
+  margin-right: 10px;
 `;
 
 const Vote = styled.span`
@@ -125,31 +132,44 @@ const MovieMaker = styled.div`
 
 //YouTubeContainer
 const YouTubeContainer = styled.div`
+  flex-direction: column;
+  width: 100%;
+  height: 20vh;
   display: flex;
-  width: 70%;
   position: relative;
-  height: auto;
   justify-content: space-between;
-  position: relative;
   cursor: pointer;
 `;
 
-const YouTubeLink = styled.div`
+const YoutubeContents = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const YoutubeImage = styled.div`
   border-radius: 20px;
-  height: 150px;
-  width: 200px;
+  height: 50px;
+  width: 50px;
   background-image: url(${(props) => props.bgImage});
   background-position: center center;
   background-size: cover;
+  background-color: blue;
 `;
 
-const YouTubeIcon = styled.img`
+const YoutubeDescription = styled.div`
+  margin-left: 20px;
+  text-decoration: underline;
+  opacity: 0.6;
+  font-size: 14px;
+`;
+
+const YouTubeIconImage = styled.img`
   position: absolute;
-  width: 40px;
-  height: 40px;
-  top: -10px;
-  left: -9px;
-  border-radius: 30%;
+  width: 26px;
+  height: 26px;
+  top: -5px;
+  left: -10px;
+  border-radius: 100%;
 `;
 
 //Components
@@ -221,59 +241,52 @@ const DetailPresenter = ({ result, loading, error }) => {
               <OverView>{result.overview}..</OverView>
               <MovieMaker>
                 <Item>
-                  {`Director :
-                  ${
-                    result.production_companies &&
-                    result.production_companies[0].name
-                  }`}
+                  <ItemTitle>Derector</ItemTitle>
+                  {result.production_companies &&
+                    result.production_companies[0].name}
                 </Item>
                 <Item>
-                  {`Production place
- : ${result.production_countries && result.production_countries[0].name}`}
+                  <ItemTitle>Production_countries</ItemTitle>
+                  {result.production_countries &&
+                    result.production_countries[0].name}
                 </Item>
                 <Item>
-                  {`Genres :${
-                    result.genres &&
+                  <ItemTitle>Genres</ItemTitle>
+                  {result.genres &&
                     result.genres.map((genre, index) =>
                       index === result.genres.length - 1
                         ? genre.name
                         : `${genre.name} / `
-                    )
-                  }`}
+                    )}
                 </Item>
               </MovieMaker>
               <YouTubeContainer>
-                <YouTubeLink
-                  bgImage={
-                    result.poster_path && result.poster_path
-                      ? `https://image.tmdb.org/t/p/original${result.poster_path}`
-                      : require("images/YoutubeImage.jpeg")
-                  }
-                  onClick={() =>
-                    (window.location = `https:www.youtube.com/watch?v=${
+                <YoutubeContents>
+                  <YoutubeImage
+                    bgImage={
+                      result.poster_path && result.poster_path
+                        ? `https://image.tmdb.org/t/p/original${result.poster_path}`
+                        : require("images/YoutubeImage.jpeg")
+                    }
+                    onClick={() =>
+                      (window.location = `https:www.youtube.com/watch?v=${
+                        result.videos &&
+                        result.videos.results &&
+                        result.videos.results[0].key
+                      }`)
+                    }
+                  />
+                  <YoutubeDescription>
+                    {`https://www.youtube.com/watch?v=${
+                      result &&
                       result.videos &&
-                      result.videos.results &&
+                      result.videos.results[0] &&
+                      result.videos.results[0].key &&
                       result.videos.results[0].key
-                    }`)
-                  }
-                ></YouTubeLink>
-
-                <YouTubeLink
-                  bgImage={
-                    result.backdrop_path && result.backdrop_path
-                      ? `https://image.tmdb.org/t/p/original${result.backdrop_path}`
-                      : require("images/YoutubeImage.jpeg")
-                  }
-                  onClick={() =>
-                    (window.location = `https:www.youtube.com/watch?v=${
-                      result.videos &&
-                      result.videos.results &&
-                      result.videos.results[0].key
-                    }`)
-                  }
-                >
-                  <YouTubeIcon src={YoutubeImage} />
-                </YouTubeLink>
+                    }`}
+                  </YoutubeDescription>
+                </YoutubeContents>
+                <YouTubeIconImage src={YoutubeIcon}></YouTubeIconImage>
               </YouTubeContainer>
             </Data>
           </Content>
