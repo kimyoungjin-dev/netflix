@@ -22,7 +22,7 @@ const TVPresenter = ({ topRated, popular, airingToday, loading, error }) => (
     ) : (
       <Container>
         {topRated && topRated.length > 0 && (
-          <Section title="TopRated">
+          <Section title="Top Rated">
             {topRated.map((show) => (
               <Poster
                 key={show.id}

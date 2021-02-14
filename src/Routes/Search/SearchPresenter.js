@@ -43,6 +43,7 @@ const SearchButton = styled.button`
   margin-top: 5px;
   font-size: 30px;
   color: white;
+  cursor: pointer;
 `;
 
 const SearchPresenter = ({

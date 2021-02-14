@@ -55,7 +55,7 @@ const Data = styled.div`
 `;
 
 const Title = styled.h3`
-  font-size: 50px;
+  font-size: 35px;
   margin-bottom: 20px;
 `;
 
@@ -66,11 +66,27 @@ const ItemContainer = styled.div`
   align-items: center;
 `;
 
-const Item = styled.span``;
+const Item = styled.span`
+  font-size: 15px;
+`;
 
 const Vote = styled.span`
   color: yellow;
   font-size: 20px;
+  margin-left: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & svg {
+    margin-left: 5px;
+    font-size: 15px;
+  }
+`;
+
+const Popularity = styled.span`
+  margin-left: 10px;
+  color: rgb(56, 173, 85);
 `;
 
 const DbButtion = styled.button`
@@ -119,6 +135,7 @@ const YouTubeContainer = styled.div`
 `;
 
 const YouTubeLink = styled.div`
+  border-radius: 20px;
   height: 150px;
   width: 200px;
   background-image: url(${(props) => props.bgImage});
@@ -137,6 +154,7 @@ const YouTubeIcon = styled.img`
 
 //Components
 const DetailPresenter = ({ result, loading, error }) => {
+  console.log(result);
   return (
     <HelmetProvider>
       {loading ? (
@@ -171,13 +189,11 @@ const DetailPresenter = ({ result, loading, error }) => {
               </Title>
 
               <ItemContainer>
-                <Item>
-                  {`${
-                    result.release_date
-                      ? result.release_date.substring(0, 4)
-                      : result.first_air_date.substring(0, 4)
-                  }년`}
-                </Item>
+                <Item>{`${
+                  result.release_date
+                    ? result.release_date.substring(0, 4)
+                    : result.first_air_date.substring(0, 4)
+                }년`}</Item>
                 <Divider>•</Divider>
                 <Item>
                   {`${
@@ -197,6 +213,9 @@ const DetailPresenter = ({ result, loading, error }) => {
                   {result.vote_average && result.vote_average}
                   <AiFillStar />
                 </Vote>
+                <Popularity>
+                  {`${Math.floor(result.popularity && result.popularity)} View`}
+                </Popularity>
               </ItemContainer>
 
               <OverView>{result.overview}..</OverView>
