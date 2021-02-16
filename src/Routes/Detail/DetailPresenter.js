@@ -42,7 +42,7 @@ const Cover = styled.div`
   background-image: url(${(props) => props.bgImage});
   background-position: center center;
   background-size: cover;
-  height: 56%;
+  height: 83%;
   border-radius: 5px;
 `;
 
@@ -157,8 +157,8 @@ const YoutubeContents = styled.a`
 `;
 
 const YoutubeImage = styled.div`
-  height: 60px;
-  width: 60px;
+  height: 70px;
+  width: 70px;
   background-image: url(${(props) => props.bgImage});
   background-position: center center;
   background-size: cover;
@@ -177,9 +177,11 @@ const YouTubeIconImage = styled.img`
 `;
 
 const SeasonsContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
   margin-top: 30px;
   width: 100%;
-  height: 13.5vh;
+  height: 200px;
   font-size: 14px;
 `;
 
