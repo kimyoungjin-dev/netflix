@@ -224,15 +224,17 @@ const DetailPresenter = ({ result, loading, error }) => {
 
                 <Seasons>
                   (
-                  {result.seasons.map((season, index) => (
-                    <SeasonName>
-                      {`${
-                        index !== result.seasons.length - 1
-                          ? `${season.name}`
-                          : ` / ${season.name}`
-                      }`}
-                    </SeasonName>
-                  ))}
+                  {result &&
+                    result.seasons &&
+                    result.seasons.map((season, index) => (
+                      <SeasonName>
+                        {`${
+                          index !== result.seasons.length - 1
+                            ? `${season.name}`
+                            : ` / ${season.name}`
+                        }`}
+                      </SeasonName>
+                    ))}
                   )
                 </Seasons>
               </TitleContainer>
@@ -246,7 +248,12 @@ const DetailPresenter = ({ result, loading, error }) => {
                 <Divider>•</Divider>
                 <Item>
                   {`${
-                    result.runtime ? result.runtime : result.episode_run_time[0]
+                    result && result.runtime
+                      ? result.runtime
+                      : result &&
+                        result.episode_run_time &&
+                        result.episode_run_time[0] &&
+                        result.episode_run_time[0]
                   }분`}
                 </Item>
                 <DbButtion

@@ -5,6 +5,7 @@ import App from "Components/App";
 ReactDOM.render(
   <React.StrictMode>
     <App />
+    npm run deploy
   </React.StrictMode>,
   document.getElementById("root")
 );
