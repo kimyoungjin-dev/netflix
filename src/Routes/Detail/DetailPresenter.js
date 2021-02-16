@@ -124,6 +124,7 @@ const MoviMakerYoutubeContainer = styled.div`
 
 const MovieMakerYoutubeList = styled.div`
   display: flex;
+  width: 100%;
 `;
 
 const MovieMaker = styled.div`
@@ -137,6 +138,8 @@ const MovieMaker = styled.div`
 `;
 
 const YouTubeContainer = styled.div`
+  margin-left: 40px;
+  margin-top: 10px;
   width: 100%;
   height: 100%;
   display: flex;
@@ -149,10 +152,8 @@ const YouTubeContainer = styled.div`
 
 const YoutubeContents = styled.a`
   display: flex;
-  align-items: center;
-  width: 100%;
+  width: 80px;
   height: 11vh;
-  justify-content: center;
 `;
 
 const YoutubeImage = styled.div`
@@ -169,9 +170,9 @@ const YoutubeImage = styled.div`
 const YouTubeIconImage = styled.img`
   width: 30px;
   height: 30px;
-  position: absolute;
-  left: 65px;
+  left: -8px;
   top: -10px;
+  position: absolute;
   border-radius: 100%;
 `;
 
