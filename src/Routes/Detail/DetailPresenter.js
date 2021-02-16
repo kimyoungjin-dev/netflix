@@ -163,7 +163,7 @@ const YoutubeContents = styled.a`
 `;
 
 const YoutubeImage = styled.div`
-  border-radius: 20px;
+  border-radius: 50%;
   height: 110px;
   width: 110px;
   background-image: url(${(props) => props.bgImage});
@@ -278,13 +278,13 @@ const DetailPresenter = ({ result, loading, error }) => {
               <MovieMaker>
                 <Item>
                   <ItemTitle>Production Company</ItemTitle>
-                  {result.production_companies &&
+                  {result.production_companies[0] &&
                     result.production_companies[0].name}
                 </Item>
 
                 <Item>
                   <ItemTitle>Production_countries</ItemTitle>
-                  {result.production_countries &&
+                  {result.production_countries[0] &&
                     result.production_countries[0].name}
                 </Item>
                 <Item>
@@ -299,7 +299,9 @@ const DetailPresenter = ({ result, loading, error }) => {
               </MovieMaker>
               <YouTubeContainer>
                 <YoutubeContents
-                  href={`https://youtube.com/watch?v=${result.videos.results[0].key}`}
+                  href={`https://youtube.com/watch?v=${
+                    result.videos.results[0] && result.videos.results[0].key
+                  }`}
                   target="_blank"
                 >
                   <YoutubeImage
@@ -312,14 +314,16 @@ const DetailPresenter = ({ result, loading, error }) => {
 
                   <YoutubeLinkAdress>
                     {`https://www.youtube.com/watch?v=${
-                      result.videos.results && result.videos.results[0].key
+                      result.videos.results[0] && result.videos.results[0].key
                     }`}
                   </YoutubeLinkAdress>
                   <YouTubeIconImage src={YoutubeIcon} />
                 </YoutubeContents>
 
                 <YoutubeContents
-                  href={`https://youtube.com/watch?v=${result.videos.results[1].key}`}
+                  href={`https://youtube.com/watch?v=${
+                    result.videos.results[0] && result.videos.results[0].key
+                  }`}
                   target="_blank"
                 >
                   <YoutubeImage
@@ -334,7 +338,11 @@ const DetailPresenter = ({ result, loading, error }) => {
                     }
                   />
                   <YoutubeLinkAdress>{`https://www.youtube.com/watch?v=${
-                    result.videos.results && result.videos.results[0].key
+                    result.videos.results[1] && result.videos.results[1].key
+                      ? result.videos.results[1].key
+                      : result.videos.results[0]
+                      ? result.videos.results[0].key
+                      : ""
                   }`}</YoutubeLinkAdress>
                 </YoutubeContents>
               </YouTubeContainer>
