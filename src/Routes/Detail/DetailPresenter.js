@@ -188,7 +188,6 @@ const YouTubeIconImage = styled.img`
 
 //Components
 const DetailPresenter = ({ result, loading, error }) => {
-  console.log(result);
   return (
     <HelmetProvider>
       {loading ? (

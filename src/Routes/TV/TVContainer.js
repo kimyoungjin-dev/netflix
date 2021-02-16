@@ -23,7 +23,6 @@ const TVContainer = () => {
         data: { results: airingToday },
       } = await tvApi.airingToday();
       setTopRated(topRated);
-      console.log(topRated);
       setPopular(popular);
       setAiringToday(airingToday);
     } catch (error) {
