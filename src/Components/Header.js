@@ -37,7 +37,7 @@ const Item = styled.li`
   text-align: center;
   transition: border-bottom 0.5s ease-in-out;
   border-bottom: 4px solid
-    ${(props) => (props.current ? "gray" : "transparent")};
+    ${(props) => (props.current ? "white" : "transparent")};
 `;
 
 const SLink = styled(Link)`
@@ -58,13 +58,13 @@ const HeaderC = ({ location: { pathname } }) => (
         </Link>
         <List>
           <Item current={pathname === "/"}>
-            <SLink to="/">Movies</SLink>
+            <SLink to="/">Movie</SLink>
           </Item>
           <Item current={pathname === "/tv"}>
-            <SLink to="/tv">tv</SLink>
+            <SLink to="/tv">TV</SLink>
           </Item>
           <Item current={pathname === "/search"}>
-            <SLink to="/search">search</SLink>
+            <SLink to="/search">Search</SLink>
           </Item>
         </List>
       </>
