@@ -5,7 +5,6 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
-//Routes
 import Home from "Routes/Home";
 import Search from "Routes/Search";
 import TV from "Routes/TV";
