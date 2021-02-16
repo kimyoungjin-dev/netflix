@@ -6,7 +6,6 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import Massage from "Components/Massage";
 import YoutubeIcon from "images/YoutubeImage.jpeg";
 import { AiFillStar } from "react-icons/ai";
-import { Link } from "react-router-dom";
 
 const Container = styled.div`
   position: relative;
@@ -30,7 +29,6 @@ const Backdrop = styled.div`
   z-index: -1;
 `;
 
-//
 const Content = styled.div`
   display: flex;
   width: 100%;
@@ -227,10 +225,9 @@ const DetailPresenter = ({ result, loading, error }) => {
                 </Title>
 
                 <Seasons>
-                  {result &&
-                    result.seasons &&
+                  {result.seasons &&
                     result.seasons.map((season, index) => (
-                      <SeasonName>
+                      <SeasonName key={index}>
                         {`${
                           index !== result.seasons.length - 1
                             ? `${season.name}`
@@ -250,23 +247,24 @@ const DetailPresenter = ({ result, loading, error }) => {
                 <Divider>•</Divider>
                 <Item>
                   {`${
-                    result && result.runtime
+                    result.runtime
                       ? result.runtime
-                      : result &&
-                        result.episode_run_time &&
+                      : result.episode_run_time &&
                         result.episode_run_time[0] &&
                         result.episode_run_time[0]
                   }분`}
                 </Item>
-                <DbButtion
-                  onClick={() =>
-                    (window.location = `https://www.imdb.com/title/${
-                      result.imdb_id && result.imdb_id
-                    }`)
-                  }
-                >
-                  Preview
-                </DbButtion>
+                {result.imdb_id && (
+                  <DbButtion
+                    onClick={() =>
+                      (window.location = `https://www.imdb.com/title/${
+                        result.imdb_id && result.imdb_id
+                      }`)
+                    }
+                  >
+                    Preview
+                  </DbButtion>
+                )}
                 <Vote>
                   {result.vote_average && result.vote_average}
                   <AiFillStar />
@@ -286,9 +284,7 @@ const DetailPresenter = ({ result, loading, error }) => {
 
                 <Item>
                   <ItemTitle>Production_countries</ItemTitle>
-                  {result &&
-                    result.production_countries &&
-                    result.production_countries[0] &&
+                  {result.production_countries &&
                     result.production_countries[0].name}
                 </Item>
                 <Item>
@@ -305,11 +301,7 @@ const DetailPresenter = ({ result, loading, error }) => {
                 <YoutubeContents
                   onClick={() =>
                     (window.location = `https:www.youtube.com/watch?v=${
-                      result &&
-                      result.videos &&
-                      result.videos.results &&
-                      result.videos.results[0] &&
-                      result.videos.results[0].key
+                      result.videos.results && result.videos.results[0].key
                     }`)
                   }
                 >
@@ -323,54 +315,35 @@ const DetailPresenter = ({ result, loading, error }) => {
 
                   <YoutubeLinkAdress>
                     {`https://www.youtube.com/watch?v=${
-                      result &&
-                      result.videos &&
-                      result.videos.results[0] &&
-                      result.videos.results[0].key &&
-                      result.videos.results[0].key
+                      result.videos.results && result.videos.results[0].key
                     }`}
                   </YoutubeLinkAdress>
                 </YoutubeContents>
 
                 <YouTubeIconImage src={YoutubeIcon}></YouTubeIconImage>
-                <Link
+
+                <YoutubeContents
                   onClick={() =>
                     (window.location = `https:www.youtube.com/watch?v=${
-                      result.videos &&
-                      result.videos.results &&
-                      result.videos.results[1]
-                        ? result.videos.results[1].key
-                        : result.videos.results[0] &&
-                          result.videos.results[0].key
+                      result.videos.results && result.videos.results[0].key
                     }`)
                   }
                 >
-                  <YoutubeContents>
-                    <YoutubeImage
-                      bgImage={
-                        result && result.backdrop_path && result.backdrop_path
-                          ? `https://image.tmdb.org/t/p/original${
-                              result &&
-                              result.backdrop_path &&
-                              result.backdrop_path
-                            }`
-                          : ` https://image.tmdb.org/t/p/original${
-                              result && result.poster_path && result.poster_path
-                            }`
-                      }
-                    />
-                    {console.log(result)}
-                    <YoutubeLinkAdress>{`https://www.youtube.com/watch?v=${
-                      result &&
-                      result.videos &&
-                      result.videos.results &&
-                      result.videos.results[1] &&
-                      result.videos.results[1]
-                        ? result.videos.results[1].key
-                        : result.videos.results[0].key
-                    }`}</YoutubeLinkAdress>
-                  </YoutubeContents>
-                </Link>
+                  <YoutubeImage
+                    bgImage={
+                      result && result.backdrop_path && result.backdrop_path
+                        ? `https://image.tmdb.org/t/p/original${
+                            result.backdrop_path && result.backdrop_path
+                          }`
+                        : ` https://image.tmdb.org/t/p/original${
+                            result.poster_path && result.poster_path
+                          }`
+                    }
+                  />
+                  <YoutubeLinkAdress>{`https://www.youtube.com/watch?v=${
+                    result.videos.results && result.videos.results[0].key
+                  }`}</YoutubeLinkAdress>
+                </YoutubeContents>
               </YouTubeContainer>
             </Data>
           </Content>
