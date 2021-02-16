@@ -83,7 +83,7 @@ const ItemContainer = styled.div`
 `;
 
 const Item = styled.span`
-  font-size: 12px;
+  font-size: 17px;
 `;
 
 const Vote = styled.span`
@@ -122,14 +122,14 @@ const Divider = styled.span`
 `;
 
 const OverView = styled.p`
-  font-size: 14px;
+  font-size: 17px;
   opacity: 0.6;
   line-height: 1.5;
 `;
 
 const ItemTitle = styled.span`
   color: white;
-  font-size: 16px;
+  font-size: 26px;
   margin-right: 10px;
 `;
 
@@ -153,17 +153,20 @@ const YouTubeContainer = styled.div`
   position: relative;
   justify-content: space-between;
   cursor: pointer;
+  & :last-child {
+  }
 `;
 
 const YoutubeContents = styled.div`
   display: flex;
   align-items: center;
+  margin-top: 40px;
 `;
 
 const YoutubeImage = styled.div`
   border-radius: 20px;
-  height: 50px;
-  width: 50px;
+  height: 110px;
+  width: 110px;
   background-image: url(${(props) => props.bgImage});
   background-position: center center;
   background-size: cover;
@@ -174,15 +177,15 @@ const YoutubeLinkAdress = styled.div`
   margin-left: 20px;
   text-decoration: underline;
   opacity: 0.6;
-  font-size: 14px;
+  font-size: 18px;
 `;
 
 const YouTubeIconImage = styled.img`
   position: absolute;
-  width: 26px;
-  height: 26px;
-  top: -5px;
-  left: -10px;
+  width: 55px;
+  height: 55px;
+  top: 20px;
+  left: -20px;
   border-radius: 100%;
 `;
 
