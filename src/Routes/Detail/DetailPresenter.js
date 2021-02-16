@@ -156,7 +156,7 @@ const YouTubeContainer = styled.div`
   }
 `;
 
-const YoutubeContents = styled.div`
+const YoutubeContents = styled.a`
   display: flex;
   align-items: center;
   margin-top: 40px;
@@ -299,11 +299,8 @@ const DetailPresenter = ({ result, loading, error }) => {
               </MovieMaker>
               <YouTubeContainer>
                 <YoutubeContents
-                  onClick={() =>
-                    (window.location = `https:www.youtube.com/watch?v=${
-                      result.videos.results && result.videos.results[0].key
-                    }`)
-                  }
+                  href={`https://youtube.com/watch?v=${result.videos.results[0].key}`}
+                  target="_blank"
                 >
                   <YoutubeImage
                     bgImage={
@@ -323,11 +320,8 @@ const DetailPresenter = ({ result, loading, error }) => {
                 <YouTubeIconImage src={YoutubeIcon}></YouTubeIconImage>
 
                 <YoutubeContents
-                  onClick={() =>
-                    (window.location = `https:www.youtube.com/watch?v=${
-                      result.videos.results && result.videos.results[0].key
-                    }`)
-                  }
+                  href={`https://youtube.com/watch?v=${result.videos.results[1].key}`}
+                  target="_blank"
                 >
                   <YoutubeImage
                     bgImage={
