@@ -54,11 +54,26 @@ const Data = styled.div`
   width: 70%;
 `;
 
+const TitleContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
 const Title = styled.h3`
   font-size: 35px;
   margin-bottom: 20px;
 `;
 
+const Seasons = styled.span`
+  font-size: 17px;
+  margin-left: 10px;
+`;
+
+const SeasonName = styled.span`
+  font-size: 12px;
+  margin: 0px 4px;
+`;
 const ItemContainer = styled.div`
   margin-top: 15px;
   margin-bottom: 10px;
@@ -69,12 +84,6 @@ const ItemContainer = styled.div`
 
 const Item = styled.span`
   font-size: 12px;
-`;
-
-const ItemTitle = styled.span`
-  color: gray;
-  font-size: 16px;
-  margin-right: 10px;
 `;
 
 const Vote = styled.span`
@@ -118,13 +127,18 @@ const OverView = styled.p`
   line-height: 1.5;
 `;
 
-//Center Title
+const ItemTitle = styled.span`
+  color: white;
+  font-size: 16px;
+  margin-right: 10px;
+`;
+
 const MovieMaker = styled.div`
   margin: 30px 0px;
   display: flex;
   flex-direction: column;
   color: white;
-  opacity: 0.8;
+  opacity: 0.6;
   justify-content: space-between;
   height: 15%;
   font-style: oblique;
@@ -156,7 +170,7 @@ const YoutubeImage = styled.div`
   background-color: blue;
 `;
 
-const YoutubeDescription = styled.div`
+const YoutubeLinkAdress = styled.div`
   margin-left: 20px;
   text-decoration: underline;
   opacity: 0.6;
@@ -202,11 +216,27 @@ const DetailPresenter = ({ result, loading, error }) => {
               bgImage={`https://image.tmdb.org/t/p/original${result.poster_path}`}
             />
             <Data>
-              <Title>
-                {result.original_title
-                  ? result.original_title
-                  : result.original_name}
-              </Title>
+              <TitleContainer>
+                <Title>
+                  {result.original_title
+                    ? result.original_title
+                    : result.original_name}
+                </Title>
+
+                <Seasons>
+                  (
+                  {result.seasons.map((season, index) => (
+                    <SeasonName>
+                      {`${
+                        index !== result.seasons.length - 1
+                          ? `${season.name}`
+                          : ` / ${season.name}`
+                      }`}
+                    </SeasonName>
+                  ))}
+                  )
+                </Seasons>
+              </TitleContainer>
 
               <ItemContainer>
                 <Item>{`${
@@ -241,13 +271,16 @@ const DetailPresenter = ({ result, loading, error }) => {
               <OverView>{result.overview}..</OverView>
               <MovieMaker>
                 <Item>
-                  <ItemTitle>Derector</ItemTitle>
+                  <ItemTitle>Production Company</ItemTitle>
                   {result.production_companies &&
                     result.production_companies[0].name}
                 </Item>
+
                 <Item>
                   <ItemTitle>Production_countries</ItemTitle>
-                  {result.production_countries &&
+                  {result &&
+                    result.production_countries &&
+                    result.production_countries[0] &&
                     result.production_countries[0].name}
                 </Item>
                 <Item>
@@ -261,22 +294,26 @@ const DetailPresenter = ({ result, loading, error }) => {
                 </Item>
               </MovieMaker>
               <YouTubeContainer>
-                <YoutubeContents>
+                <YoutubeContents
+                  onClick={() =>
+                    (window.location = `https:www.youtube.com/watch?v=${
+                      result &&
+                      result.videos &&
+                      result.videos.results &&
+                      result.videos.results[0] &&
+                      result.videos.results[0].key
+                    }`)
+                  }
+                >
                   <YoutubeImage
                     bgImage={
                       result.poster_path && result.poster_path
                         ? `https://image.tmdb.org/t/p/original${result.poster_path}`
                         : require("images/YoutubeImage.jpeg")
                     }
-                    onClick={() =>
-                      (window.location = `https:www.youtube.com/watch?v=${
-                        result.videos &&
-                        result.videos.results &&
-                        result.videos.results[0].key
-                      }`)
-                    }
                   />
-                  <YoutubeDescription>
+
+                  <YoutubeLinkAdress>
                     {`https://www.youtube.com/watch?v=${
                       result &&
                       result.videos &&
@@ -284,9 +321,46 @@ const DetailPresenter = ({ result, loading, error }) => {
                       result.videos.results[0].key &&
                       result.videos.results[0].key
                     }`}
-                  </YoutubeDescription>
+                  </YoutubeLinkAdress>
                 </YoutubeContents>
                 <YouTubeIconImage src={YoutubeIcon}></YouTubeIconImage>
+
+                <YoutubeContents
+                  onClick={() =>
+                    (window.location = `https:www.youtube.com/watch?v=${
+                      result.videos &&
+                      result.videos.results &&
+                      result.videos.results[1]
+                        ? result.videos.results[1].key
+                        : result.videos.results[0] &&
+                          result.videos.results[0].key
+                    }`)
+                  }
+                >
+                  <YoutubeImage
+                    bgImage={
+                      result && result.backdrop_path && result.backdrop_path
+                        ? `https://image.tmdb.org/t/p/original${
+                            result &&
+                            result.backdrop_path &&
+                            result.backdrop_path
+                          }`
+                        : ` https://image.tmdb.org/t/p/original${
+                            result && result.poster_path && result.poster_path
+                          }`
+                    }
+                  />
+                  <YoutubeLinkAdress>
+                    {`https://www.youtube.com/watch?v=${
+                      result &&
+                      result.videos &&
+                      result.videos.results &&
+                      result.videos.results[1]
+                        ? result.videos.results[1].key
+                        : result.videos.results[0].key
+                    }`}
+                  </YoutubeLinkAdress>
+                </YoutubeContents>
               </YouTubeContainer>
             </Data>
           </Content>
