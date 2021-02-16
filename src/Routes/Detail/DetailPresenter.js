@@ -227,7 +227,6 @@ const DetailPresenter = ({ result, loading, error }) => {
                 </Title>
 
                 <Seasons>
-                  (
                   {result &&
                     result.seasons &&
                     result.seasons.map((season, index) => (
@@ -239,7 +238,6 @@ const DetailPresenter = ({ result, loading, error }) => {
                         }`}
                       </SeasonName>
                     ))}
-                  )
                 </Seasons>
               </TitleContainer>
 
@@ -304,7 +302,7 @@ const DetailPresenter = ({ result, loading, error }) => {
                 </Item>
               </MovieMaker>
               <YouTubeContainer>
-                <Link
+                <YoutubeContents
                   onClick={() =>
                     (window.location = `https:www.youtube.com/watch?v=${
                       result &&
@@ -315,26 +313,25 @@ const DetailPresenter = ({ result, loading, error }) => {
                     }`)
                   }
                 >
-                  <YoutubeContents>
-                    <YoutubeImage
-                      bgImage={
-                        result.poster_path && result.poster_path
-                          ? `https://image.tmdb.org/t/p/original${result.poster_path}`
-                          : require("images/YoutubeImage.jpeg")
-                      }
-                    />
+                  <YoutubeImage
+                    bgImage={
+                      result.poster_path && result.poster_path
+                        ? `https://image.tmdb.org/t/p/original${result.poster_path}`
+                        : require("images/YoutubeImage.jpeg")
+                    }
+                  />
 
-                    <YoutubeLinkAdress>
-                      {`https://www.youtube.com/watch?v=${
-                        result &&
-                        result.videos &&
-                        result.videos.results[0] &&
-                        result.videos.results[0].key &&
-                        result.videos.results[0].key
-                      }`}
-                    </YoutubeLinkAdress>
-                  </YoutubeContents>
-                </Link>
+                  <YoutubeLinkAdress>
+                    {`https://www.youtube.com/watch?v=${
+                      result &&
+                      result.videos &&
+                      result.videos.results[0] &&
+                      result.videos.results[0].key &&
+                      result.videos.results[0].key
+                    }`}
+                  </YoutubeLinkAdress>
+                </YoutubeContents>
+
                 <YouTubeIconImage src={YoutubeIcon}></YouTubeIconImage>
                 <Link
                   onClick={() =>
@@ -362,16 +359,16 @@ const DetailPresenter = ({ result, loading, error }) => {
                             }`
                       }
                     />
-                    <YoutubeLinkAdress>
-                      {`https://www.youtube.com/watch?v=${
-                        result &&
-                        result.videos &&
-                        result.videos.results &&
-                        result.videos.results[1]
-                          ? result.videos.results[1].key
-                          : result.videos.results[0].key
-                      }`}
-                    </YoutubeLinkAdress>
+                    {console.log(result)}
+                    <YoutubeLinkAdress>{`https://www.youtube.com/watch?v=${
+                      result &&
+                      result.videos &&
+                      result.videos.results &&
+                      result.videos.results[1] &&
+                      result.videos.results[1]
+                        ? result.videos.results[1].key
+                        : result.videos.results[0].key
+                    }`}</YoutubeLinkAdress>
                   </YoutubeContents>
                 </Link>
               </YouTubeContainer>
