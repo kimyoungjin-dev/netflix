@@ -181,11 +181,11 @@ const YoutubeLinkAdress = styled.div`
 
 const YouTubeIconImage = styled.img`
   position: absolute;
-  width: 55px;
-  height: 55px;
-  top: 20px;
-  left: -20px;
-  border-radius: 100%;
+  width: 35px;
+  height: 35px;
+  top: 30px;
+  left: -10px;
+  border-radius: 40%;
 `;
 
 //Components
@@ -315,9 +315,8 @@ const DetailPresenter = ({ result, loading, error }) => {
                       result.videos.results && result.videos.results[0].key
                     }`}
                   </YoutubeLinkAdress>
+                  <YouTubeIconImage src={YoutubeIcon} />
                 </YoutubeContents>
-
-                <YouTubeIconImage src={YoutubeIcon}></YouTubeIconImage>
 
                 <YoutubeContents
                   href={`https://youtube.com/watch?v=${result.videos.results[1].key}`}
