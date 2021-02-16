@@ -41,8 +41,6 @@ const Spin = styled.span`
   }
 `;
 
-const Title = styled.span``;
-
 const Loader = () => {
   return (
     <Container>
