@@ -7,20 +7,18 @@ const Container = styled.div`
   }
 `;
 const Title = styled.span`
-  font-size: 15px;
+  font-size: 30px;
   font-weight: 600;
-  border: 1px solid white;
-  padding: 8px;
-  border-radius: 3px;
+  font-style: italic;
 `;
 
 const Grid = styled.div`
-  margin-top: 20px;
   display: grid;
-  grid-column-gap: 35px;
+  grid-column-gap: 140px;
   grid-row-gap: 20px;
-  grid-template-columns: repeat(auto-fill, 140px);
-  margin-bottom: 30px;
+  grid-template-columns: repeat(auto-fill, 100px);
+  width: 100%;
+  margin-top: 10px;
 `;
 
 const Section = ({ title, children }) => (

@@ -4,24 +4,23 @@ import { Link, withRouter } from "react-router-dom";
 import logo from "images/logo.webp";
 
 const Header = styled.header`
-  color: white;
   position: fixed;
   top: 0;
-  left: 0;
+  margin-left: 20px;
   width: 100%;
   height: 50px;
   display: flex;
-  align-items: center;
   background-color: black;
-  z-index: 10;
-  font-size: 18px;
+  align-items: center;
   box-shadow: 0px 1px 5px 2px rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(8px);
+  z-index: 10;
+  font-size: 20px;
 `;
 
 const Logo = styled.div`
   & img {
-    width: 80px;
+    width: 120px;
     height: 50px;
     cursor: pointer;
   }
@@ -29,11 +28,14 @@ const Logo = styled.div`
 
 const List = styled.ul`
   display: flex;
+  width: 33%;
+  justify-content: space-around;
 `;
 
 const Item = styled.li`
-  width: 80px;
+  width: 102px;
   height: 50px;
+
   text-align: center;
   transition: border-bottom 0.5s ease-in-out;
   border-bottom: 4px solid
@@ -58,10 +60,10 @@ const HeaderC = ({ location: { pathname } }) => (
         </Link>
         <List>
           <Item current={pathname === "/"}>
-            <SLink to="/">Movie</SLink>
+            <SLink to="/">홈</SLink>
           </Item>
           <Item current={pathname === "/tv"}>
-            <SLink to="/tv">TV</SLink>
+            <SLink to="/tv">TV 프로그램</SLink>
           </Item>
           <Item current={pathname === "/search"}>
             <SLink to="/search">Search</SLink>
