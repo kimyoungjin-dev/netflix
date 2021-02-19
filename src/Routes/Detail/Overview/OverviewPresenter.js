@@ -12,7 +12,8 @@ const Contents = styled.div``;
 
 const Description = styled.h2`
   font-size: 20px;
-  margin: 20px 0px;
+  margin-top: 20px;
+  margin-bottom: 40px;
   line-height: 1.4;
 `;
 
@@ -40,8 +41,15 @@ const Genre = styled.span`
   opacity: 0.7;
 `;
 const YoutubeContainer = styled.div`
+  width: 100%;
+  height: 300px;
+  margin-top: 80px;
   display: flex;
-  flex-direction: column;
+`;
+
+const YoutubeContents = styled.div`
+  width: auto;
+  margin-right: 30px;
 `;
 
 const Site = styled.div`
@@ -59,14 +67,6 @@ const Name = styled.div`
 
 const Type = styled.div`
   margin-bottom: 5px;
-`;
-
-const Image = styled.div`
-  background-image: url(${(props) => props.bgImage});
-  height: 100px;
-  width: 200px;
-  background-position: center center;
-  background-size: cover;
 `;
 
 const OverviewPresenter = ({ result, loading, error }) => {
@@ -116,15 +116,14 @@ const OverviewPresenter = ({ result, loading, error }) => {
                 target="_blank"
                 href={`https://youtube.com/watch?v=${i.key}`}
               >
-                <Site>
-                  <RiMovieLine />
-                  {i.site}
-                </Site>
-                <Name>{i.name}</Name>
-                <Type>{i.type}</Type>
-                <Image
-                  bgImage={`https://image.tmdb.org/t/p/original${result.backdrop_path}`}
-                />
+                <YoutubeContents>
+                  <Site>
+                    <RiMovieLine />
+                    {i.site}
+                  </Site>
+                  <Name>{i.name}</Name>
+                  <Type>{i.type}</Type>
+                </YoutubeContents>
               </a>
             ))}
           </YoutubeContainer>

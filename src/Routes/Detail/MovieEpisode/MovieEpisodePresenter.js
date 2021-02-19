@@ -74,7 +74,10 @@ const MovieEpisodePresenter = ({ result, loading, error }) => {
         <Loader />
       ) : (
         <Container>
-          <Imdb href={`https://www.imdb.com/title/${result.imdb_id}`}>
+          <Imdb
+            target="_blank"
+            href={`https://www.imdb.com/title/${result.imdb_id}`}
+          >
             Movie Preview
           </Imdb>
           <OverviewTitle>
