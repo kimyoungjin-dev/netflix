@@ -1,6 +1,13 @@
 import { movieApi, tvApi } from "api";
 import React, { useEffect, useState } from "react";
 import DetailPresenter from "./DetailPresenter";
+import styled from "styled-components";
+import Backdrop from "./Backdrop";
+import DetailContents from "./DetailContents";
+
+const Container = styled.div`
+  display: flex;
+`;
 
 const DetailContainer = (props) => {
   const [result, setResult] = useState(null);
@@ -42,11 +49,17 @@ const DetailContainer = (props) => {
   useEffect(() => {
     getDetail();
   }, []);
-
   return (
-    <div>
+    <Container>
+      <Backdrop result={result} loading={loading} error={error} />
       <DetailPresenter result={result} loading={loading} error={error} />
-    </div>
+      <DetailContents
+        result={result}
+        loading={loading}
+        error={error}
+        props={props}
+      />
+    </Container>
   );
 };
 
