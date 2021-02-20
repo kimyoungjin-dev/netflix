@@ -3,9 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const Container = styled.div`
-  font-size: 15px;
-`;
+const Container = styled.div``;
 
 const Image = styled.div`
   height: 300px;
@@ -32,21 +30,20 @@ const ImageContainer = styled.div`
   }
 `;
 
-const TitleYear = styled.div`
-  width: 230px;
+const TitleBox = styled.div`
+  width: 200px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
 
 const Title = styled.span`
-  font-size: 14px;
+  font-size: 18px;
 `;
 
 const Year = styled.span`
-  font-size: 12px;
-  color: gray;
-  font-style: italic;
+  font-size: 15px;
+  opacity: 0.7;
 `;
 
 const Poster = ({ id, title, year, imgUrl, isMovie = false }) => {
@@ -63,18 +60,19 @@ const Poster = ({ id, title, year, imgUrl, isMovie = false }) => {
           />
         </ImageContainer>
 
-        <TitleYear>
+        <TitleBox>
           <Title>
-            {title && title.length > 18
+            {title && title.length > 16
               ? `${title.substring(0, 18)}...`
               : title}
           </Title>
           <Year>{year && year.substring(0, 4)}</Year>
-        </TitleYear>
+        </TitleBox>
       </Container>
     </Link>
   );
 };
+
 Poster.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
