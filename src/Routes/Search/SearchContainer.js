@@ -8,8 +8,11 @@ const SearchContainer = () => {
   const [SearchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [editing, setEditing] = useState(false);
 
-  const handdleSumbit = (event) => {
+  const toggleEditing = () => setEditing((prev) => !prev);
+
+  const handdleSubmit = (event) => {
     event.preventDefault();
     if (SearchTerm !== "") {
       SearchByTerm();
@@ -36,7 +39,7 @@ const SearchContainer = () => {
       setMovieResults(movieResults);
       setTvResults(tvResults);
     } catch (error) {
-      setError("Movie information cannot be loaded.");
+      setError("Movie information cannot be loaded :(");
     } finally {
       setLoading(false);
     }
@@ -46,12 +49,14 @@ const SearchContainer = () => {
     <div>
       <SearchPresenter
         onChange={onChange}
-        handdleSumbit={handdleSumbit}
+        handdleSubmit={handdleSubmit}
         SearchTerm={SearchTerm}
         movieResults={movieResults}
         tvResults={tvResults}
         loading={loading}
         error={error}
+        editing={editing}
+        toggleEditing={toggleEditing}
       />
     </div>
   );

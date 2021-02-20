@@ -12,16 +12,16 @@ const Container = styled.div`
 `;
 
 const Form = styled.form`
-  margin-top: 20px;
+  margin-top: 30px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding-right: 20px;
+  padding-right: 40px;
 `;
 
 const Input = styled.input`
   all: unset;
-  font-size: 20px;
+  font-size: 25px;
   padding: 10px;
   border: 1px solid white;
 
@@ -31,23 +31,31 @@ const Input = styled.input`
   }
   &::placeholder {
     font-size: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
   }
 `;
 
 const SearchButton = styled.button`
   all: unset;
-  margin-left: 20px;
+  margin-left: 10px;
   margin-top: 5px;
-  font-size: 30px;
-  color: white;
+  font-size: 40px;
+  cursor: pointer;
+`;
+
+const SearchIcon = styled.button`
+  all: unset;
+  font-size: 40px;
+  position: fixed;
+  top: 108px;
+  right: 21px;
   cursor: pointer;
 `;
 
 const SearchPresenter = ({
-  handdleSumbit,
+  editing,
+  toggleEditing,
+  handdleSubmit,
   SearchTerm,
   onChange,
   movieResults,
@@ -61,16 +69,24 @@ const SearchPresenter = ({
     </Helmet>
 
     <Container>
-      <Form onSubmit={handdleSumbit}>
-        <Input
-          onChange={onChange}
-          value={SearchTerm}
-          placeholder="Search Movie or tv Show!"
-        />
-        <SearchButton>
-          <AiOutlineSearch type="submit" />
-        </SearchButton>
-      </Form>
+      {editing ? (
+        <Form onSubmit={handdleSubmit}>
+          <Input
+            onChange={onChange}
+            value={SearchTerm}
+            placeholder="Search Movie or tv Show!"
+          />
+          <SearchButton>
+            <AiOutlineSearch type="submit" onClick={() => toggleEditing()} />
+          </SearchButton>
+        </Form>
+      ) : (
+        <>
+          <SearchIcon>
+            <AiOutlineSearch type="submit" onClick={() => toggleEditing()} />
+          </SearchIcon>
+        </>
+      )}
       {loading ? (
         <Loader />
       ) : (
@@ -130,6 +146,6 @@ SearchPresenter.propTypes = {
   tvResults: PropTypes.array,
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string,
-  handdleSumbit: PropTypes.func.isRequired,
+  handdleSubmit: PropTypes.func.isRequired,
 };
 export default SearchPresenter;
