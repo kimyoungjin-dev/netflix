@@ -13,7 +13,7 @@ const DetailContainer = (props) => {
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [good, setGood] = useState(1);
+
   const getDetail = async () => {
     const {
       history: { push },
