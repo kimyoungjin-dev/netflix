@@ -8,13 +8,10 @@ const BackdropImage = styled.div`
   position: absolute;
   height: 100vh;
   width: 100%;
-  top: -30px;
-  left: 0;
   background-image: url(${(props) => props.bgImage});
   background-position: center;
   background-size: cover;
   filter: blur(4px);
-  opacity: 0.5;
   z-index: -1;
 `;
 
