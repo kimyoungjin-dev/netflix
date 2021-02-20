@@ -7,7 +7,7 @@ import styled from "styled-components";
 import Helmet from "react-helmet";
 
 const Container = styled.div`
-  padding: 0px 10px;
+  padding: 0px 20px;
 `;
 
 const TVPresenter = ({ topRated, popular, airingToday, loading, error }) => (
@@ -22,7 +22,7 @@ const TVPresenter = ({ topRated, popular, airingToday, loading, error }) => (
     ) : (
       <Container>
         {topRated && topRated.length > 0 && (
-          <Section title="가장 많이 본 영화">
+          <Section title="Weekly Movie">
             {topRated.map((show) => (
               <Poster
                 key={show.id}
@@ -38,7 +38,7 @@ const TVPresenter = ({ topRated, popular, airingToday, loading, error }) => (
         )}
 
         {popular && popular.length > 0 && (
-          <Section title="인기 영화">
+          <Section title="인기 TV">
             {popular.map((show) => (
               <Poster
                 key={show.id}
@@ -54,7 +54,7 @@ const TVPresenter = ({ topRated, popular, airingToday, loading, error }) => (
         )}
 
         {airingToday && airingToday.length > 0 && (
-          <Section title="오늘 나온영화">
+          <Section title="Today on TV">
             {airingToday.map((show) => (
               <Poster
                 key={show.id}

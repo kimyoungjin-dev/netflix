@@ -26,7 +26,7 @@ const TVContainer = () => {
       setPopular(popular);
       setAiringToday(airingToday);
     } catch (error) {
-      setError("Movie information cannot be loaded.");
+      setError("Movie information cannot be loaded :(");
     } finally {
       setLoading(false);
     }
