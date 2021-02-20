@@ -6,56 +6,48 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import Massage from "Components/Massage";
 
 const Container = styled.div`
-  margin-right: 10px;
+  margin-right: 30px;
   position: relative;
   height: 100vh;
   width: 50%;
-  padding-left: 50px;
-  display: flex;
+  padding-left: 25px;
 `;
 
-const Content = styled.div`
-  display: flex;
-  width: 100%;
-  z-index: 1;
-  height: 100%;
-`;
 const CoverContainer = styled.div`
   width: 400px;
-  height: 100vh;
+  height: 100%;
 `;
 
 const Cover = styled.div`
   background-image: url(${(props) => props.bgImage});
   background-position: center;
   background-size: cover;
-  height: 80%;
   width: 100%;
+  height: 80%;
   position: relative;
 `;
 
 const PosterTitle = styled.div`
   position: absolute;
-  bottom: 230px;
+  bottom: 40px;
   left: 65px;
   font-size: 50px;
 `;
 
-const Resume = styled.h2`
-  margin-bottom: 10px;
-`;
+const Resume = styled.h1``;
 
 const SubResume = styled.span`
-  font-size: 23px;
+  font-size: 25px;
 `;
 
 const LastEpisode = styled.h3`
+  background-color: blue;
   margin-top: 10px;
   color: auto;
   opacity: 0.6;
   font-size: 18px;
   width: 100%;
-  height: 100%;
+  height: 13.5%;
   font-family: "Truculenta", sans-serif;
 `;
 
@@ -79,30 +71,23 @@ const DetailPresenter = ({ result, loading, error }) => {
             </title>
           </Helmet>
 
-          <Content>
-            <CoverContainer>
-              <Cover
-                bgImage={`https://image.tmdb.org/t/p/original${result.poster_path}`}
-              />
-              <PosterTitle>
-                <Resume>Resume</Resume>
-                <SubResume>
-                  {`${
-                    result.production_companies &&
-                    result.production_companies[0].name.substring(0, 30)
-                  }...`}
-                </SubResume>
-              </PosterTitle>
-              <LastEpisode>
+          <CoverContainer>
+            <Cover
+              bgImage={`https://image.tmdb.org/t/p/original${result.poster_path}`}
+            />
+            <PosterTitle>
+              <Resume>Resume</Resume>
+              <SubResume>
                 {`${
-                  result.last_episode_to_air
-                    ? result.last_episode_to_air.overview &&
-                      result.last_episode_to_air.overview.substring(0, 180)
-                    : result.overview.substring(0, 180)
+                  result.production_companies &&
+                  result.production_companies[0].name.substring(0, 30)
                 }...`}
-              </LastEpisode>
-            </CoverContainer>
-          </Content>
+              </SubResume>
+            </PosterTitle>
+            <LastEpisode>
+              {result && result.tagline && result.tagline}
+            </LastEpisode>
+          </CoverContainer>
 
           {error && <Massage color="red" text={error} />}
         </Container>
