@@ -6,11 +6,11 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import Massage from "Components/Massage";
 
 const Container = styled.div`
-  margin-right: 30px;
   position: relative;
   height: 100vh;
-  width: 50%;
-  padding-left: 25px;
+  width: 25%;
+  padding-left: 20px;
+  margin-right: 40px;
 `;
 
 const CoverContainer = styled.div`
@@ -28,9 +28,6 @@ const Cover = styled.div`
 `;
 
 const PosterTitle = styled.div`
-  position: absolute;
-  bottom: 40px;
-  left: 65px;
   font-size: 50px;
 `;
 
@@ -41,7 +38,6 @@ const SubResume = styled.span`
 `;
 
 const LastEpisode = styled.h3`
-  background-color: blue;
   margin-top: 10px;
   color: auto;
   opacity: 0.6;

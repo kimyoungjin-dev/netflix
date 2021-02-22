@@ -86,6 +86,8 @@ const TabTitle = styled.h2`
   font-family: "Nunito", sans-serif;
   &:hover {
     border-bottom: 2px solid red;
+    transition: 1s;
+    opacity: 0.7;
   }
 `;
 

@@ -19,16 +19,19 @@ const NoReview = styled.h1`
 const Contents = styled.div`
   margin-bottom: 30px;
   display: flex;
+  justify-content: center;
+
   flex-direction: column;
   & svg {
     margin-right: 5px;
-    font-size: 20px;
+    font-size: 30px;
     color: orange;
   }
 `;
 
 const Author = styled.h2`
-  font-size: 20px;
+  margin-top: 60px;
+  font-size: 30px;
   font-weight: 600;
 `;
 
@@ -48,16 +51,16 @@ const Content = styled.div`
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 17px;
+  font-size: 24px;
 `;
 
 const CreatedAt = styled.span`
-  margin: 5px 0px;
-  font-size: 17px;
+  margin: 25px 0px;
+  font-size: 20px;
 `;
 
 const Url = styled.a`
-  font-size: 16px;
+  font-size: 20px;
   margin-bottom: 10px;
 `;
 
