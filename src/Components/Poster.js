@@ -38,11 +38,12 @@ const TitleBox = styled.div`
 `;
 
 const Title = styled.span`
-  font-size: 18px;
+  font-size: 13px;
+  font-weight: bold;
 `;
 
 const Year = styled.span`
-  font-size: 15px;
+  font-size: 13px;
   opacity: 0.7;
 `;
 

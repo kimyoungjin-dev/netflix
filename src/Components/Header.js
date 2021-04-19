@@ -6,13 +6,11 @@ import LinkPath from "./LinkPath";
 const Header = styled.header`
   position: fixed;
   top: 0;
-  margin-left: 25px;
   width: 100%;
   height: 70px;
   display: flex;
   background-color: black;
   align-items: center;
-  backdrop-filter: blur(8px);
   font-size: 18px;
   z-index: 1;
 `;
@@ -27,7 +25,7 @@ const Item = styled.li`
   width: 150px;
   height: 50px;
   text-align: center;
-  transition: border-bottom 0.5s ease-in-out;
+  transition: 0.6s ease-in-out;
   border-bottom: 4px solid
     ${(props) => (props.current ? "white" : "transparent")};
   & :hover {
