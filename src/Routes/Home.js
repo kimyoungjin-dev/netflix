@@ -6,22 +6,6 @@ import Massage from "Components/Massage";
 
 const Container = styled.div``;
 
-const BackDropBox = styled.div`
-  z-index: -1;
-  position: fixed;
-  height: 100vh;
-  width: 100%;
-`;
-const BackDrop = styled.div`
-  background-image: url(${(props) => props.bgImage});
-  background-position: center center;
-  background-size: cover;
-  height: 100vh;
-  width: 100%;
-  filter: blur(3px);
-  z-index: -10;
-`;
-
 const LoginBtn = styled.button`
   all: unset;
   color: white;
@@ -117,8 +101,6 @@ const Home = () => {
     getMovies();
   }, []);
 
-  const randomNumber = Math.floor(Math.random() * 1);
-
   return (
     <>
       {loading ? (
@@ -126,11 +108,6 @@ const Home = () => {
       ) : (
         <Container>
           <LoginBtn>로그인</LoginBtn>
-          <BackDropBox>
-            <BackDrop
-              bgImage={`https://image.tmdb.org/t/p/original${movies[randomNumber].backdrop_path}`}
-            />
-          </BackDropBox>
 
           <Contents>
             <Title>영화, TV 프로그램을 무제한으로.</Title>
