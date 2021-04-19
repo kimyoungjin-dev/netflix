@@ -12,7 +12,6 @@ const Container = styled.div`
 `;
 
 const Form = styled.form`
-  margin-top: 30px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -21,9 +20,10 @@ const Form = styled.form`
 
 const Input = styled.input`
   all: unset;
-  font-size: 25px;
+  font-size: 20px;
   padding: 10px;
   border: 1px solid white;
+
   &:hover {
     border: 1px solid white;
     opacity: 0.5;
@@ -42,13 +42,12 @@ const SearchButton = styled.button`
   cursor: pointer;
 `;
 
-const SearchIcon = styled.button`
-  all: unset;
-  font-size: 40px;
+const SearchIcon = styled.div`
   position: fixed;
-  top: 108px;
-  right: 21px;
+  top: 80px;
+  right: 40px;
   cursor: pointer;
+  transition: 0.8s ease-in-out;
 `;
 
 const SearchPresenter = ({
@@ -79,7 +78,11 @@ const SearchPresenter = ({
       ) : (
         <>
           <SearchIcon>
-            <AiOutlineSearch type="submit" onClick={() => toggleEditing()} />
+            <AiOutlineSearch
+              type="submit"
+              onClick={() => toggleEditing()}
+              size="60"
+            />
           </SearchIcon>
         </>
       )}

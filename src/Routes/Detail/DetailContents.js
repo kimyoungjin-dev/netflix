@@ -2,53 +2,39 @@ import Loader from "Components/Loader";
 import React from "react";
 import styled from "styled-components";
 import { AiFillStar } from "react-icons/ai";
-import { Link, Route, withRouter } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import Overview from "Components/Overview";
 import MovieEpisode from "Components/MovieEpisode";
 import ShowEpisode from "Components/ShowEpisode";
 import Help from "Components/Help";
 import Creadit from "Components/Creadit";
 import Review from "Components/Review";
+import LinkPath from "Components/LinkPath";
 
 const Container = styled.div`
   position: relative;
+  margin-left: 10px;
 `;
 
 const NetflexOriginal = styled.div`
-  font-family: "Oswald", sans-serif;
   display: flex;
+  font-weight: bold;
 `;
 
-const Netflex = styled.div`
+const Netflex = styled.span`
   font-size: 70px;
 `;
 
 const Original = styled.div`
   font-size: 70px;
-  opacity: 0.6;
   margin-left: 15px;
+  opacity: 0.5;
 `;
 
 const Title = styled.div`
-  font-family: "Reggae One", cursive;
-  font-size: 60px;
-  margin: 40px 0px;
+  font-size: 40px;
+  margin: 20px 0px;
   font-weight: 600;
-`;
-
-const VoteContainer = styled.div`
-  position: absolute;
-  right: 30px;
-  top: 120px;
-  display: flex;
-  font-size: 55px;
-`;
-
-const Vote = styled.div``;
-
-const VoteIcon = styled.span`
-  color: yellow;
-  margin-left: 5px;
 `;
 
 const ItemContainer = styled.div`
@@ -97,7 +83,6 @@ const DetailContents = ({
   },
   result,
   loading,
-  error,
 }) => {
   const isMovie = pathname.includes("movie");
 
@@ -111,17 +96,24 @@ const DetailContents = ({
             <Netflex>Netflex</Netflex>
             <Original>Original</Original>
           </NetflexOriginal>
-          <Title>
-            {result && result.original_name
-              ? result.original_name
-              : result.original_title}
-          </Title>
-          <VoteContainer>
-            <Vote> {result.vote_average} </Vote>
-            <VoteIcon>
-              <AiFillStar />
-            </VoteIcon>
-          </VoteContainer>
+
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <Title>
+              {result && result.original_name
+                ? result.original_name
+                : result.original_title}
+            </Title>
+
+            <div
+              style={{ display: "flex", alignItems: "center", marginLeft: 20 }}
+            >
+              <span style={{ fontSize: 30 }}> {result.vote_average} </span>
+              <div>
+                <AiFillStar size="30" color="yellow" />
+              </div>
+            </div>
+          </div>
+
           <ItemContainer>
             <Item>
               {result.first_air_date
@@ -190,26 +182,26 @@ const DetailContents = ({
           </Tab>
 
           <Route
-            path={isMovie ? `/movie/:id/overview` : `/show/:id/overview`} //overview
+            path={isMovie ? LinkPath.movieOverView : LinkPath.tvOverView} //overview
             component={Overview}
           />
 
-          <Route path="/movie/:id/movieepisode" component={MovieEpisode} />
+          <Route path={LinkPath.movieEpisode} component={MovieEpisode} />
 
-          <Route path="/show/:id/episode" component={ShowEpisode} />
+          <Route path={LinkPath.tvEpisode} component={ShowEpisode} />
 
           <Route
-            path={isMovie ? `/movie/:id/help` : `/show/:id/help`}
+            path={isMovie ? LinkPath.movieHelp : LinkPath.tvHelp}
             component={Help}
           />
 
           <Route
-            path={isMovie ? `/movie/:id/creadit` : `/show/:id/creadit`}
+            path={isMovie ? LinkPath.movieCredit : LinkPath.tvCredit}
             component={Creadit}
           />
 
           <Route
-            path={isMovie ? `/movie/:id/review` : `/show/:id/review`}
+            path={isMovie ? LinkPath.movieReview : LinkPath.tvReview}
             component={Review}
           />
         </Container>

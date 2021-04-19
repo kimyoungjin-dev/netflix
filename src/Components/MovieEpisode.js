@@ -7,7 +7,7 @@ import { BiCameraMovie } from "react-icons/bi";
 import Massage from "./Massage";
 
 const Container = styled.div`
-  margin-top: 10px;
+  margin-top: 20px;
 `;
 
 const Imdb = styled.a`
@@ -41,7 +41,6 @@ const MovieProduction = styled.div`
   display: flex;
   margin: 20px 0px;
   font-size: 30px;
-
   & svg {
     margin-right: 10px;
   }
@@ -49,10 +48,8 @@ const MovieProduction = styled.div`
 
 const ProductionCompanies = styled.div`
   display: flex;
-  justify-content: flex-start;
   align-items: center;
-  line-height: 2;
-  opacity: 0.7;
+  line-height: 1.4;
 `;
 
 const CompanyName = styled.h3`
@@ -131,14 +128,18 @@ const MovieEpisode = (props) => {
             <BiCameraMovie />
             MovieProduction
           </MovieProduction>
-          {result.production_companies.map((movie) => (
-            <ProductionCompanies key={movie.id}>
-              <Image
-                bgImage={`https://image.tmdb.org/t/p/original${movie.logo_path}`}
-              />
-              <CompanyName>{movie.name}</CompanyName>
-            </ProductionCompanies>
-          ))}
+          <div style={{ display: "flex" }}>
+            {result.production_companies
+              .filter((v, index) => index < 5)
+              .map((movie) => (
+                <ProductionCompanies key={movie.id}>
+                  <Image
+                    bgImage={`https://image.tmdb.org/t/p/original${movie.logo_path}`}
+                  />
+                  <CompanyName>{movie.name}</CompanyName>
+                </ProductionCompanies>
+              ))}
+          </div>
           {error && <Massage color="red" text={error} />}
         </Container>
       )}

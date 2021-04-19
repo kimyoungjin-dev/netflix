@@ -4,7 +4,9 @@ import styled from "styled-components";
 import Loader from "./Loader";
 import Massage from "./Massage";
 
-const Container = styled.div``;
+const Container = styled.div`
+  margin-top: 10px;
+`;
 
 const CreaditContainer = styled.div`
   display: flex;
@@ -24,10 +26,11 @@ const Image = styled.div`
   background-size: cover;
   width: 100%;
   height: 100%;
+  border-radius: 5px;
 `;
 
 const Name = styled.div`
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 600;
   text-align: center;
   margin: 5px 0px;
@@ -92,7 +95,7 @@ const Creadit = (props) => {
         <Container>
           <CreaditContainer>
             {creaditData
-              .filter((v, index) => index < 20)
+              .filter((v, index) => index < 14)
               .map((movie) => (
                 <Contents key={movie.id}>
                   <Image

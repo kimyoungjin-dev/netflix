@@ -4,16 +4,22 @@ import styled from "styled-components";
 import { movieApi, tvApi } from "api";
 import Massage from "./Massage";
 
-const Container = styled.div``;
+const Container = styled.div`
+  padding-bottom: 20px;
+`;
 
 const SeasonContainer = styled.div`
   display: flex;
+  height: 100%;
+  flex-wrap: wrap;
 `;
+
 const SeasonBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
 `;
+
 const Air_date = styled.div`
   opacity: 0.8;
 `;
@@ -23,18 +29,18 @@ const SeasonContents = styled.div`
 `;
 
 const Title = styled.div`
-  margin: 15px 0px;
-  font-weight: 600;
-  font-size: 20px;
-  margin-right: 30px;
+  margin: 10px 0px;
+  font-size: 18px;
+  margin-right: 15px;
 `;
 
 const Image = styled.div`
   background-position: center center;
   background-size: cover;
   background-image: url(${(props) => props.bgImage});
-  height: 130px;
-  width: 230px;
+  height: 100px;
+  width: 180px;
+  border-radius: 5px;
 `;
 
 const Season = (props) => {

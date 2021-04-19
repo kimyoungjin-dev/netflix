@@ -10,10 +10,10 @@ const Container = styled.div``;
 const Contents = styled.div``;
 
 const Description = styled.h2`
-  font-size: 24px;
-  margin: 20px 0px;
-
-  line-height: 1.5;
+  font-size: 20px;
+  margin-top: 5px;
+  line-height: 1.2;
+  margin-bottom: 5px;
 `;
 
 const TitleAContent = styled.div`
@@ -23,13 +23,15 @@ const TitleAContent = styled.div`
 `;
 
 const Title = styled.span`
-  font-size: 24px;
+  font-size: 20px;
+  color: gold;
+  opacity: 0.7;
 `;
 
 const Content = styled.span`
-  margin-left: 15px;
-  font-size: 20px;
+  font-size: 14px;
   opacity: 0.7;
+  margin-left: 20px;
 `;
 
 const Genre = styled.span`
@@ -37,22 +39,24 @@ const Genre = styled.span`
   opacity: 0.7;
   margin-right: 10px;
 `;
+
 const YoutubeContainer = styled.div`
-  width: 100%;
-  height: 300px;
-  margin-top: 30px;
   display: flex;
-  flex-wrap: nowrap;
 `;
 
 const YoutubeContents = styled.div`
-  margin-right: 10px;
+  margin-right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 `;
 
 const Site = styled.div`
   font-size: 20px;
-  color: beige;
   opacity: 0.7;
+  color: black;
+  font-weight: bold;
   display: flex;
   & svg {
     margin-right: 10px;
@@ -60,11 +64,13 @@ const Site = styled.div`
 `;
 
 const Name = styled.div`
-  margin: 10px 0px;
+  margin-top: 10px;
 `;
 
 const Type = styled.div`
-  margin-bottom: 5px;
+  opacity: 0.7;
+  margin-top: 5px;
+  text-align: center;
 `;
 
 const OverviewContainer = (props) => {

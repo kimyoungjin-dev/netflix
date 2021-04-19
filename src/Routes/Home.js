@@ -9,15 +9,13 @@ const Container = styled.div``;
 const LoginBtn = styled.button`
   all: unset;
   color: white;
-  padding: 4px;
   position: fixed;
   background-color: red;
   right: 50px;
+  width: 100px;
+  height: 40px;
   top: 100px;
-  width: 80px;
-  height: 30px;
   text-align: center;
-  border-radius: 10px;
   font-size: 20px;
 `;
 const Contents = styled.div`
@@ -53,6 +51,9 @@ const Form = styled.form`
 
 const Input = styled.input`
   width: 75%;
+  outline: none;
+  padding-left: 10px;
+  font-size: 20px;
 `;
 
 const SubmitInput = styled.input`
@@ -110,7 +111,7 @@ const Home = () => {
           <LoginBtn>로그인</LoginBtn>
 
           <Contents>
-            <Title>영화, TV 프로그램을 무제한으로.</Title>
+            <Title>영화 TV 프로그램을 무제한으로.</Title>
             <SubTitle>
               다양한 디바이스에서 시청하세요. 언제든 해지하실 수 있습니다.
             </SubTitle>
