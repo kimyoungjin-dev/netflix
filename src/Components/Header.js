@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link, withRouter } from "react-router-dom";
+import LinkPath from "./LinkPath";
 
 const Header = styled.header`
   position: fixed;
@@ -60,7 +61,7 @@ const HeaderC = ({ location: { pathname } }) => (
     <Header>
       <>
         <List>
-          <Item current={pathname === "/"}>
+          <Item current={pathname === LinkPath.Home}>
             <SLink to="/">
               <ImageContainer>
                 <Image bgImage={require("../images/Logo.png").default} />
@@ -68,24 +69,24 @@ const HeaderC = ({ location: { pathname } }) => (
             </SLink>
           </Item>
 
-          <Item current={pathname === "/movie"}>
-            <SLink to="/movie">Movie</SLink>
+          <Item current={pathname === LinkPath.movie}>
+            <SLink to={LinkPath.movie}>Movie</SLink>
           </Item>
 
-          <Item current={pathname === "/tv"}>
-            <SLink to="/tv">TV 프로그램</SLink>
+          <Item current={pathname === LinkPath.tv}>
+            <SLink to={LinkPath.tv}>TV 프로그램</SLink>
           </Item>
 
-          <Item current={pathname === "/movietrending"}>
-            <SLink to="/movietrending">이번주 인기영화</SLink>
+          <Item current={pathname === LinkPath.movietrending}>
+            <SLink to={LinkPath.movietrending}>이번주 인기영화</SLink>
           </Item>
 
-          <Item current={pathname === "/tvtrending"}>
-            <SLink to="/tvtrending">이번주 인기TV</SLink>
+          <Item current={pathname === LinkPath.tvtrending}>
+            <SLink to={LinkPath.tvtrending}>이번주 인기TV</SLink>
           </Item>
 
-          <Item current={pathname === "/search"}>
-            <SLink to="/search">Search</SLink>
+          <Item current={pathname === LinkPath.search}>
+            <SLink to={LinkPath.search}>Search</SLink>
           </Item>
         </List>
       </>
