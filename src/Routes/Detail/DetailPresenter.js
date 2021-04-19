@@ -2,8 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Loader from "Components/Loader";
-import { Helmet, HelmetProvider } from "react-helmet-async";
 import Massage from "Components/Massage";
+import { Helmet } from "react-helmet-async";
+import PageTitle from "Components/PageTitle";
 
 const Container = styled.div`
   position: relative;
@@ -49,23 +50,21 @@ const LastEpisode = styled.h3`
 
 const DetailPresenter = ({ result, loading, error }) => {
   return (
-    <HelmetProvider>
+    <>
       {loading ? (
         <>
-          <Helmet>
-            <title>Loading...</title>
-          </Helmet>
+          <PageTitle title="MovieDetail" />
           <Loader />
         </>
       ) : result ? (
         <Container>
-          <Helmet>
-            <title>
-              {result.original_title
+          <PageTitle
+            title={
+              result.original_title
                 ? result.original_title
-                : result.original_name}
-            </title>
-          </Helmet>
+                : result.original_name
+            }
+          />
 
           <CoverContainer>
             <Cover
@@ -88,7 +87,7 @@ const DetailPresenter = ({ result, loading, error }) => {
           {error && <Massage color="red" text={error} />}
         </Container>
       ) : null}
-    </HelmetProvider>
+    </>
   );
 };
 

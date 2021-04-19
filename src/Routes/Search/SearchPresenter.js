@@ -5,7 +5,7 @@ import Section from "Components/Section";
 import Loader from "Components/Loader";
 import Massage from "Components/Massage";
 import Poster from "Components/Poster";
-import Helmet from "react-helmet";
+import PageTitle from "Components/PageTitle";
 
 const Container = styled.div`
   width: 100%;
@@ -24,7 +24,6 @@ const Input = styled.input`
   font-size: 25px;
   padding: 10px;
   border: 1px solid white;
-
   &:hover {
     border: 1px solid white;
     opacity: 0.5;
@@ -64,10 +63,7 @@ const SearchPresenter = ({
   error,
 }) => (
   <>
-    <Helmet>
-      <title>NetFlix | Search</title>
-    </Helmet>
-
+    <PageTitle title="NetFlix | Search" />
     <Container>
       {editing ? (
         <Form onSubmit={handdleSubmit}>
@@ -148,4 +144,5 @@ SearchPresenter.propTypes = {
   error: PropTypes.string,
   handdleSubmit: PropTypes.func.isRequired,
 };
+
 export default SearchPresenter;

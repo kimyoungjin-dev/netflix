@@ -4,6 +4,7 @@ import React from "react";
 import styled from "styled-components";
 import Poster from "Components/Poster";
 import Massage from "Components/Massage";
+import PageTitle from "Components/PageTitle";
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -13,7 +14,10 @@ const MovieTrendingPresenter = ({ result, error, loading }) => {
   return (
     <>
       {loading ? (
-        <Loader />
+        <>
+          <Loader />
+          <PageTitle title="NetFlix | Popular Movies this week" />
+        </>
       ) : (
         <Container>
           {result && result.length > 0 && (

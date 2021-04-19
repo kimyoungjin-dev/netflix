@@ -4,7 +4,7 @@ import Poster from "Components/Poster";
 import Section from "Components/Section";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import Helmet from "react-helmet";
+import PageTitle from "Components/PageTitle";
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -15,9 +15,7 @@ const TVPresenter = ({ topRated, popular, airingToday, loading, error }) => (
     {loading ? (
       <>
         <Loader />
-        <Helmet>
-          <title> NetFlix | TV Show</title>
-        </Helmet>
+        <PageTitle title="NetFlix | TV Show" />
       </>
     ) : (
       <Container>

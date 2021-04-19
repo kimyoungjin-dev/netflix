@@ -4,7 +4,7 @@ import Section from "Components/Section";
 import Loader from "Components/Loader";
 import Massage from "Components/Massage";
 import Poster from "Components/Poster";
-import Helmet from "react-helmet";
+import PageTitle from "Components/PageTitle";
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -14,9 +14,7 @@ const MoviePresenter = ({ nowPlaying, popular, upcoming, loading, error }) => (
   <>
     {loading ? (
       <>
-        <Helmet>
-          <title>NetFlix | Home</title>
-        </Helmet>
+        <PageTitle title="NetFlix | Home" />
         <Loader />
       </>
     ) : (
